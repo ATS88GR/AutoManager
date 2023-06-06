@@ -11,9 +11,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Car implements Serializable {
 
-    int year;
-    String brand;
-    String model;
-    int cost;
+    private int year;
+    private String brand;
+    private String model;
+    private int cost;
 
 }

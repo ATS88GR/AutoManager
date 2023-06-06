@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 
-public class CarManager {
+public class CarService {
     public static Car MaxCost(ArrayList<Car> list){
         int maxCost =0;
         Car result = null;
@@ -96,4 +96,10 @@ public class CarManager {
         list.set(index1, tempCar);
         return list;
     }
+    public static void toString(ArrayList<Car> list){
+        for (Car car: list)
+            System.out.println(car.getYear() + " " + car.getBrand() + " " + car.getModel() + " " + car.getCost());
+        System.out.println();
+    }
+
 }

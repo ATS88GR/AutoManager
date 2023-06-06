@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class JsonManager {
+public class JsonService {
     public static String parseUrl(URL url) {
         if (url == null) {
             return "";

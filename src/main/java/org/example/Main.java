@@ -26,40 +26,36 @@ public class Main {
         Garage.add(new Car(2006,"Suzuki", "Baleno", 3000));
         Garage.add(new Car(2019,"Suzuki", "Swift", 14000));
 
-        System.out.println("Max cost of car: " + CarManager.MaxCost(Garage).getCost() +"\n"); // Max cost
+        System.out.println("Max cost of car: " + CarService.MaxCost(Garage).getCost() +"\n"); // Max cost
 
-        System.out.println("Min cost of car: " + CarManager.MinCost(Garage).getCost() + "\n");
+        System.out.println("Min cost of car: " + CarService.MinCost(Garage).getCost() + "\n");
 
         System.out.println("Get brand Volvo from list: ");
-        print(CarManager.getListByBrand("Volvo", Garage));
+        CarService.toString(CarService.getListByBrand("Volvo", Garage));
 
         System.out.println("Get model A4 of brand from list: ");
-        print(CarManager.getListByModel("A4", Garage));
+        CarService.toString(CarService.getListByModel("A4", Garage));
 
         System.out.println("Get cars by price range from 5000 to 15000: ");
-        print(CarManager.getListByPriceRange(5000, 15000, Garage));
+        CarService.toString(CarService.getListByPriceRange(5000, 15000, Garage));
 
         System.out.println("Sort list by price");
-        print(CarManager.sortListByPrice(Garage));
+        CarService.toString(CarService.sortListByPrice(Garage));
 
         System.out.println("Sort list by brand");
-        print(CarManager.sortListByBrand(Garage));
+        CarService.toString(CarService.sortListByBrand(Garage));
 
         saveToFile(Garage);
         System.out.println("The list saved to file Report.bin\n");
 
         System.out.println("The list is loading from file Report");
-        print(loadFromFile());
+        CarService.toString(loadFromFile());
 
         System.out.println("Building JSON array with cars information:");
-        System.out.println(JsonManager.buildCarsJson(Garage));
+        System.out.println(JsonService.buildCarsJson(Garage));
 
     }
-    public static void print(ArrayList<Car> list){
-        for (Car car: list)
-            System.out.println(car.getYear() + " " + car.getBrand() + " " + car.getModel() + " " + car.getCost());
-        System.out.println();
-    }
+
     public static void saveToFile(ArrayList<Car> list){
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path + "\\Report.bin"))){
             oos.writeObject(list); // Write object in file
