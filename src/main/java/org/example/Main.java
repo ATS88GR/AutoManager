@@ -1,9 +1,10 @@
 package org.example;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import org.example.model.Car;
+import org.example.service.CarService;
+import org.example.service.JsonService;
+
+import java.io.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -26,15 +27,15 @@ public class Main {
         Garage.add(new Car(2006,"Suzuki", "Baleno", 3000));
         Garage.add(new Car(2019,"Suzuki", "Swift", 14000));
 
-        System.out.println("Max cost of car: " + CarService.MaxCost(Garage).getCost() +"\n"); // Max cost
+        System.out.println("Max cost of car: " + CarService.getMaxCostCar(Garage).getCost() +"\n"); // Max cost
 
-        System.out.println("Min cost of car: " + CarService.MinCost(Garage).getCost() + "\n");
+        System.out.println("Min cost of car: " + CarService.getMinCostCar(Garage).getCost() + "\n");
 
         System.out.println("Get brand Volvo from list: ");
-        CarService.toString(CarService.getListByBrand("Volvo", Garage));
+        CarService.toString(CarService.findBrandList("Volvo", Garage));
 
         System.out.println("Get model A4 of brand from list: ");
-        CarService.toString(CarService.getListByModel("A4", Garage));
+        CarService.toString(CarService.findModelList("A4", Garage));
 
         System.out.println("Get cars by price range from 5000 to 15000: ");
         CarService.toString(CarService.getListByPriceRange(5000, 15000, Garage));
@@ -45,32 +46,13 @@ public class Main {
         System.out.println("Sort list by brand");
         CarService.toString(CarService.sortListByBrand(Garage));
 
-        saveToFile(Garage);
-        System.out.println("The list saved to file Report.bin\n");
+        JsonService.jsonFileWriter(Garage, new File("CarInfo.json"));
+        System.out.println("The list saved to file CarInfo.json\n");
 
-        System.out.println("The list is loading from file Report");
-        CarService.toString(loadFromFile());
+        System.out.println("The list is loading from file CarInfo.json");
+        JsonService.jsonFileReader(new File("CarInfo.json"));
 
         System.out.println("Building JSON array with cars information:");
         System.out.println(JsonService.buildCarsJson(Garage));
-
-    }
-
-    public static void saveToFile(ArrayList<Car> list){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path + "\\Report.bin"))){
-            oos.writeObject(list); // Write object in file
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-    public static ArrayList<Car> loadFromFile(){
-        ArrayList<Car> tempList = null;
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path + "\\Report.bin"))) {
-            tempList = (ArrayList<Car>) ois.readObject(); // read List
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return tempList;
     }
 }

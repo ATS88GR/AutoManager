@@ -1,9 +1,11 @@
-package org.example;
+package org.example.service;
+
+import org.example.model.Car;
 
 import java.util.ArrayList;
 
 public class CarService {
-    public static Car MaxCost(ArrayList<Car> list){
+    public static Car getMaxCostCar(ArrayList<Car> list){
         int maxCost =0;
         Car result = null;
         for (Car car: list) {
@@ -14,7 +16,7 @@ public class CarService {
         }
         return result;
     }
-    public static Car MinCost(ArrayList<Car> list){
+    public static Car getMinCostCar(ArrayList<Car> list){
         int minCost = list.get(0).getCost();
         Car result = null;
         for (Car car: list) {
@@ -25,13 +27,13 @@ public class CarService {
         }
         return result;
     }
-    public static ArrayList<Car> getListByBrand(String searchBrand, ArrayList<Car> list){
+    public static ArrayList<Car> findBrandList(String searchBrand, ArrayList<Car> list){
         ArrayList<Car> result = new ArrayList<>();
         for(Car car:list)
             if(car.getBrand().equals(searchBrand)) result.add(car);
         return result;
     }
-    public static ArrayList<Car> getListByModel(String searchModel, ArrayList<Car> list){
+    public static ArrayList<Car> findModelList(String searchModel, ArrayList<Car> list){
         ArrayList<Car> result = new ArrayList<>();
         for(Car car:list)
             if(car.getModel().equals(searchModel)) result.add(car);
@@ -57,7 +59,6 @@ public class CarService {
         return list;
     }
     public static ArrayList<Car> sortListByBrand(ArrayList<Car> list) {
-        Car tempCar;
         for (int j = 0; j< list.size()/2; j++) {
             for (int i = j; i < list.size() - 1-j; i++) {
                 if (list.get(i).getBrand().toLowerCase().charAt(0) > list.get(i+1).getBrand().toLowerCase().charAt(0))
@@ -101,5 +102,4 @@ public class CarService {
             System.out.println(car.getYear() + " " + car.getBrand() + " " + car.getModel() + " " + car.getCost());
         System.out.println();
     }
-
 }

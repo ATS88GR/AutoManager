@@ -1,14 +1,16 @@
-package org.example;
+package org.example.service;
 
+import org.example.model.Car;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class JsonService {
     public static String parseUrl(URL url) {
@@ -50,5 +52,32 @@ public class JsonService {
             jsonArray.add(jsonObject);
         }
         return jsonArray.toJSONString();
+    }
+    public static void jsonFileWriter(ArrayList<Car> list, File file){
+        JSONArray jsonArray = new JSONArray();
+        for (Car car: list){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("year", car.getYear());
+            jsonObject.put("brand", car.getBrand());
+            jsonObject.put("model", car.getModel());
+            jsonObject.put("cost", car.getCost());
+            jsonArray.add(jsonObject);
+            try (FileWriter writer = new FileWriter(file)){
+                writer.write(jsonArray.toJSONString());
+                writer.flush();
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
+        }
+    }
+    public static void jsonFileReader(File file) {
+        JSONParser parser = new JSONParser();
+        try {
+            JSONArray carArray = (JSONArray) parser.parse(new FileReader(file));
+            Iterator iterator = carArray.iterator();
+            while(iterator.hasNext()) System.out.println(iterator.next());
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
