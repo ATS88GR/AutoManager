@@ -1,6 +1,6 @@
-package org.example.service;
+package packages.service;
 
-import org.example.model.Car;
+import packages.model.Car;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class JsonService {
-    public static String parseUrl(URL url) {
+    public String parseUrl(URL url) {
         if (url == null) {
             return "";
         }
@@ -30,7 +30,7 @@ public class JsonService {
         return stringBuilder.toString();
     }
 
-    public static void parseCarJson(String resultJson) {
+    public void parseCarJson(String resultJson) {
         try {
             JSONObject carJsonObject = (JSONObject) JSONValue.parseWithException(resultJson);
             System.out.println("Марка авто: " + carJsonObject.get("brand"));
@@ -41,7 +41,7 @@ public class JsonService {
             e.printStackTrace();
         }
     }
-    public static String buildCarsJson(ArrayList<Car> list){
+    public String buildCarsJson(ArrayList<Car> list){
         JSONArray jsonArray = new JSONArray();
         for (Car car: list){
             JSONObject jsonObject = new JSONObject();
@@ -53,7 +53,7 @@ public class JsonService {
         }
         return jsonArray.toJSONString();
     }
-    public static void jsonFileWriter(ArrayList<Car> list, File file){
+    public void jsonFileWriter(ArrayList<Car> list, File file){
         JSONArray jsonArray = new JSONArray();
         for (Car car: list){
             JSONObject jsonObject = new JSONObject();
@@ -70,7 +70,7 @@ public class JsonService {
             }
         }
     }
-    public static void jsonFileReader(File file) {
+    public void jsonFileReader(File file) {
         JSONParser parser = new JSONParser();
         try {
             JSONArray carArray = (JSONArray) parser.parse(new FileReader(file));
