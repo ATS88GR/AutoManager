@@ -4,6 +4,7 @@ import packages.model.Car;
 import java.util.ArrayList;
 
 public class TestCar {
+
     public static ArrayList<Car> getGarage() {
         ArrayList<Car> garage = new ArrayList<>();
         garage.add(new Car(2002,"Mercedes", "w140", 15000));
