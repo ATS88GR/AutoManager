@@ -1,0 +1,15 @@
+Year: 1998, brand: Audi, madel 100, cost: 500
+Year: 2010, brand: Audi, madel A4, cost: 8000
+Year: 2012, brand: Audi, madel A4, cost: 9000
+Year: 2020, brand: Audi, madel A5, cost: 30000
+Year: 1996, brand: Mercedes, madel w140, cost: 10000
+Year: 2002, brand: Mercedes, madel w140, cost: 15000
+Year: 2006, brand: Suzuki, madel Baleno, cost: 3000
+Year: 2019, brand: Suzuki, madel Swift, cost: 14000
+Year: 2005, brand: Volvo, madel S90, cost: 8000
+Year: 2014, brand: Volvo, madel S80, cost: 18000
+Year: 2020, brand: Volvo, madel S60, cost: 20000
+Year: 2022, brand: Volvo, madel S60, cost: 23000
+Year: 2012, brand: VW, madel Passat, cost: 8000
+Year: 2019, brand: VW, madel Polo, cost: 10000
+Year: 2016, brand: VW, madel Golf, cost: 12000

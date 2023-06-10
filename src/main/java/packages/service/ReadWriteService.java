@@ -1,19 +1,18 @@
 package packages.service;
-
-import packages.model.Car;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import packages.model.Car;
 
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class JsonServiceImpl implements JsonService {
-    public String parseUrl(URL url) {
+public interface ReadWriteService {
+    default String parseUrl(URL url){
         if (url == null) {
             return "";
         }
@@ -30,7 +29,7 @@ public class JsonServiceImpl implements JsonService {
         return stringBuilder.toString();
     }
 
-    public void parseCarJson(String resultJson) {
+    default void parseCarJson(String resultJson){
         try {
             JSONObject carJsonObject = (JSONObject) JSONValue.parseWithException(resultJson);
             System.out.println("Марка авто: " + carJsonObject.get("brand"));
@@ -41,7 +40,7 @@ public class JsonServiceImpl implements JsonService {
             e.printStackTrace();
         }
     }
-    public String buildCarsJson(ArrayList<Car> list){
+    default String buildCarsJson(ArrayList<Car> list){
         JSONArray jsonArray = new JSONArray();
         for (Car car: list){
             JSONObject jsonObject = new JSONObject();
@@ -53,7 +52,9 @@ public class JsonServiceImpl implements JsonService {
         }
         return jsonArray.toJSONString();
     }
-    public void jsonFileWriter(ArrayList<Car> list, File file){
+
+    default void FileWriter(ArrayList<Car> list, String fileName){
+        fileName = fileName + ".json";
         JSONArray jsonArray = new JSONArray();
         for (Car car: list){
             JSONObject jsonObject = new JSONObject();
@@ -62,18 +63,22 @@ public class JsonServiceImpl implements JsonService {
             jsonObject.put("model", car.getModel());
             jsonObject.put("cost", car.getCost());
             jsonArray.add(jsonObject);
-            try (FileWriter writer = new FileWriter(file)){
+            try (FileWriter writer = new FileWriter(fileName)){
                 writer.write(jsonArray.toJSONString());
                 writer.flush();
             } catch (IOException ex) {
                 System.out.println(ex);
             }
         }
+        System.out.println("The list saved to file CarInfo.json\n");
     }
-    public void jsonFileReader(File file) {
+
+    default void FileReader(String fileName){
+        System.out.println("The list is loading from file CarInfo.json");
+        fileName = fileName + ".json";
         JSONParser parser = new JSONParser();
         try {
-            JSONArray carArray = (JSONArray) parser.parse(new FileReader(file));
+            JSONArray carArray = (JSONArray) parser.parse(new FileReader(fileName));
             Iterator iterator = carArray.iterator();
             while(iterator.hasNext()) System.out.println(iterator.next());
         } catch (IOException | ParseException e) {

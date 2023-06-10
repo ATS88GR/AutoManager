@@ -2,10 +2,9 @@ package packages;
 
 import packages.model.Car;
 import packages.service.CarServiceImpl;
-import packages.service.JsonServiceImpl;
+import packages.service.ReadWriteServiceImpl;
 import packages.utils.TestCar;
 
-import java.io.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -32,16 +31,14 @@ public class Main {
         System.out.println("Sort list by brand");
         carService.printCarList(carService.sortListByBrand(garage));
 
-        JsonServiceImpl jsonService = new JsonServiceImpl();
+        ReadWriteServiceImpl readWriteService = new ReadWriteServiceImpl();
 
-        jsonService.jsonFileWriter(garage, new File("CarInfo.json"));
-        System.out.println("The list saved to file CarInfo.json\n");
+        readWriteService.FileWriter(garage, "CarInfo");
 
-        System.out.println("The list is loading from file CarInfo.json");
-        jsonService.jsonFileReader(new File("CarInfo.json"));
+        readWriteService.FileReader("CarInfo");
         System.out.println();
 
         System.out.println("Building JSON array with cars information:");
-        System.out.println(jsonService.buildCarsJson(garage));
+        System.out.println(readWriteService.buildCarsJson(garage));
     }
 }
