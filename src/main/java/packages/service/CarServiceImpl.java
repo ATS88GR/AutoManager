@@ -43,7 +43,7 @@ public class CarServiceImpl implements CarService {
     public ArrayList<Car> getListByPriceRange(int startPrice, int endPrice, ArrayList<Car> list){
         ArrayList<Car> result = new ArrayList<>();
         for(Car car: list)
-            if(car.getCost()>startPrice && car.getCost()<endPrice) result.add(car);
+            if(car.getCost()>=startPrice && car.getCost()<=endPrice) result.add(car);
         return result;
     }
     public ArrayList<Car> sortListByPrice(ArrayList<Car> list){
