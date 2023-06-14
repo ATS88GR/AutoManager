@@ -54,4 +54,64 @@ ORDER BY Cost;
 SELECT * FROM Garage
 ORDER BY Brand;
 
+PostgreSQL//////////////////////////////////////////////////////////////////////////////////////////////
+
+//create the table
+
+CREATE TABLE if not exists Garage (Id SERIAL PRIMARY KEY NOT NULL, Year INT NOT NULL,Brand varchar(30) NOT NULL CHECK(trim(brand)!=''), Model varchar(30) NOT NULL CHECK(trim(model)!=''), Cost INT NOT NULL);
+
+//fill in the table
+
+INSERT INTO Garage (Year, Brand, Model, Cost)
+VALUES
+(2002,'Mercedes', 'w140', 15000),
+(1996,'Mercedes', 'w140', 10000),
+(2019,'VW', 'Polo', 10000),
+(2016,'VW', 'Golf', 12000),
+(2012,'VW', 'Passat', 8000),
+(1998,'Audi', '100', 500),
+(2010,'Audi', 'A4', 8000),
+(2012,'Audi', 'A4', 9000),
+(2020,'Audi', 'A5', 30000),
+(2005,'Volvo', 'S90', 8000),
+(2014,'Volvo', 'S80', 18000),
+(2020,'Volvo', 'S60', 20000),
+(2022,'Volvo', 'S60', 23000),
+(2006,'Suzuki', 'Baleno', 3000),
+(2019,'Suzuki', 'Swift', 14000);
+
+//Max cost Car
+
+SELECT Year, Brand, Model, Cost FROM Garage
+where cost = (select Max(Cost) from Garage);
+
+//Min cost Car
+
+SELECT Year, Brand, Model, Cost FROM Garage
+where cost = (select Min(Cost) from Garage);
+
+//Select car brand Volvo
+
+SELECT * FROM Garage
+WHERE Brand = 'Volvo';
+
+//Select car model A4
+
+SELECT * FROM Garage
+WHERE Model = 'A4';
+
+//Get cars by price range from 5000 to 15000
+
+SELECT * FROM Garage
+WHERE Cost BETWEEN 5000 AND 15000;
+
+//Sort list by cost
+
+SELECT * FROM Garage
+ORDER BY Cost;
+
+//Sort list by brand
+
+SELECT * FROM Garage
+ORDER BY Brand;
 
