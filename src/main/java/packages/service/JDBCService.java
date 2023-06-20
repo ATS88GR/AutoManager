@@ -10,7 +10,7 @@ public class JDBCService {
     private Connection connection;
     private Statement statement;
     private ResultSet rs;
-    public void setConnection() {
+    public void setConnection() {       //set connection to database
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String name = "postgres";
         String password = "password";
@@ -20,14 +20,14 @@ public class JDBCService {
             statement = connection.createStatement();
             System.out.println("Database connected\n");
         } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
     public void createDB(){
         try {
             statement.execute("CREATE TABLE if not exists Garage (Id SERIAL PRIMARY KEY NOT NULL, Year INT NOT NULL,Brand varchar(30) NOT NULL CHECK(trim(brand)!=''), Model varchar(30) NOT NULL CHECK(trim(model)!=''), Cost INT NOT NULL);");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -51,7 +51,15 @@ public class JDBCService {
                     "(2006,'Suzuki', 'Baleno', 3000)," +
                     "(2019,'Suzuki', 'Swift', 14000);");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void setStatement(String query){
+        try {
+            statement.execute(query);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -59,7 +67,7 @@ public class JDBCService {
         try {
             rs=statement.executeQuery(query);
         } catch (SQLException e) {
-            System.out.println(e);;
+            System.out.println(e.getMessage());
         }
     }
     public void closeDB()
@@ -69,8 +77,8 @@ public class JDBCService {
             statement.close();
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Connections were not closed\n");;
+            System.out.println(e.getMessage());;
         }
-        System.out.println("Connections were closed");
+        System.out.println("Connections were closed\n");
     }
 }

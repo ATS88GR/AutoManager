@@ -5,7 +5,7 @@ import packages.model.Car;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ReadWriteServiceImpl implements ReadWriteService {
+public class TxtReadWriteServiceImpl implements ReadWriteService {
 
     public void fileWriter(ArrayList<Car> list, String fileName) {
         fileName = fileName + ".txt";
@@ -23,7 +23,7 @@ public class ReadWriteServiceImpl implements ReadWriteService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("\nThe list saved to file " + fileName + "\n");
+        System.out.println("The list saved to file " + fileName + "\n");
     }
     @Override
     public ArrayList<Car> fileReader(String fileName) {
@@ -39,6 +39,7 @@ public class ReadWriteServiceImpl implements ReadWriteService {
                 list.add(new Car(Integer.parseInt(sArr[0].substring(6)), sArr[1].substring(8),
                         sArr[2].substring(8), Integer.parseInt(sArr[3].substring(7))));
             }
+            System.out.println();
             return list;
         }
         catch(IOException ex){

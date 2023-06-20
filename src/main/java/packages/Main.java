@@ -1,71 +1,17 @@
 package packages;
 
-import packages.model.Car;
-import packages.service.CarServiceImpl;
 import packages.service.DialogMenuService;
-import packages.service.ReadWriteServiceImpl;
-import packages.utils.TestCar;
-
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args) throws SQLException {
-        chooseAction();
-        ArrayList<Car> garage = TestCar.getGarage();
-        CarServiceImpl carService = new CarServiceImpl();
-
-/*        System.out.println("Max cost of car: " + carService.getMaxCostCar(garage).getCost() + "\n");
-
-        System.out.println("Min cost of car: " + carService.getMinCostCar(garage).getCost() + "\n");
-
-        System.out.println("Get brand Volvo from list: ");
-        carService.printCarList(carService.findBrandList("Volvo", garage));
-
-        System.out.println("Get model A4 of brand from list: ");
-        carService.printCarList(carService.findModelList("A4", garage));
-
-        System.out.println("Get cars by price range from 5000 to 15000: ");
-        carService.printCarList(carService.getListByPriceRange(5000, 15000, garage));
-
-        System.out.println("Sort list by price");
-        carService.printCarList(carService.sortListByPrice(garage));
-
-        System.out.println("Sort list by brand");
-        carService.printCarList(carService.sortListByBrand(garage));
-
-        ReadWriteServiceImpl readWriteService = new ReadWriteServiceImpl();
-
-        readWriteService.FileWriter(garage, "CarInfo");
-
-        readWriteService.FileReader("CarInfo");
-        System.out.println();*/
-
-        /*System.out.println("Building JSON array with cars information:");
-        System.out.println(readWriteService.buildCarsJson(garage));*/
-////////////////////////////////////////////////////////////////////////
-      /*  String url = "jdbc:postgresql://localhost:5432/postgres";
-        String name = "postgres";
-        String password = "password";
-        try {
-           Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection(url, name, password);
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Garage ORDER BY Brand;");
-            while (rs.next()) {
-                System.out.println("Year: " + rs.getInt("Year") + ", Brand: " + rs.getString("Brand"));
-            }
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }*/
+    public static void main(String[] args) {
+        chooseAction();         //actions in main menu
     }
-    private static void chooseAction() {     //actions in main menu
+    private static void chooseAction() {
         int chooseAct=4;   //int for saving choose
         try {
-            do {
+            do {            //to loop until choose exit number
                 System.out.println("""
                         Select the number of service:
                         1. Data base.
@@ -84,15 +30,12 @@ public class Main {
     }
 
     private static void actions(int act) {
+        DialogMenuService dialogMenuService = new DialogMenuService();
         switch (act) {
-            case 1 -> {
-                DialogMenuService.dbMenu();}
-            case 2 -> {
-                DialogMenuService.jsonMenu();}
-            case 3 -> {
-                DialogMenuService.txtMenu();}
-            case 4 -> {
-                System.out.println("Exit the program");}
+            case 1 -> dialogMenuService.dbMenu();   //dialog menu database
+            case 2 -> dialogMenuService.jsonMenu(); //dialog menu json
+            case 3 -> dialogMenuService.txtMenu();  //dialog menu txt
+            case 4 -> System.out.println("Exit the program");
             default -> System.out.println("You choose number without action");
         }
     }

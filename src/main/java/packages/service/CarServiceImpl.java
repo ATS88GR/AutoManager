@@ -15,6 +15,7 @@ public class CarServiceImpl implements CarService {
         for (Car car: list)
             if(car.getCost() == maxCost) result.add(car);
         printCarList(result);
+        System.out.println();
         return result;
     }
     public ArrayList<Car> getMinCostCar(ArrayList<Car> list){
@@ -26,6 +27,7 @@ public class CarServiceImpl implements CarService {
         for (Car car: list)
             if(car.getCost() == minCost) result.add(car);
         printCarList(result);
+        System.out.println();
         return result;
     }
     public ArrayList<Car> findBrandList(String searchBrand, ArrayList<Car> list){
@@ -40,6 +42,7 @@ public class CarServiceImpl implements CarService {
         for(Car car:list)
             if(car.getModel().equals(searchModel)) result.add(car);
         printCarList(result);
+        System.out.println();
         return result;
     }
     public ArrayList<Car> getListByPriceRange(int startPrice, int endPrice, ArrayList<Car> list){
@@ -47,6 +50,7 @@ public class CarServiceImpl implements CarService {
         for(Car car: list)
             if(car.getCost()>=startPrice && car.getCost()<=endPrice) result.add(car);
         printCarList(result);
+        System.out.println();
         return result;
     }
     public ArrayList<Car> sortListByPrice(ArrayList<Car> list){
@@ -61,6 +65,7 @@ public class CarServiceImpl implements CarService {
             }
         }
         printCarList(list);
+        System.out.println();
         return list;
     }
     public ArrayList<Car> sortListByBrand(ArrayList<Car> list) {
@@ -95,6 +100,7 @@ public class CarServiceImpl implements CarService {
             }
         }
         printCarList(list);
+        System.out.println();
         return list;
     }
     private ArrayList<Car> replaceElements(ArrayList<Car> list, int index1, int index2){

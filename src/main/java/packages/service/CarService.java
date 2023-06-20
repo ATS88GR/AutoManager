@@ -18,9 +18,5 @@ public interface CarService {
                     car.getYear(), car.getBrand(), car.getModel(), car.getCost());
             System.out.print(strF);
         });
-        System.out.println();
-        /*for (Car car: list)
-            System.out.println(car.getYear() + " " + car.getBrand() + " " + car.getModel() + " " + car.getCost());
-        System.out.println();*/
     }
 }
