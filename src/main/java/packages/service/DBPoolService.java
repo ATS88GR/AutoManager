@@ -2,24 +2,37 @@ package packages.service;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.postgresql.ds.PGPoolingDataSource;
 
 import java.sql.*;
 @Getter
 @Setter
 public class JDBCService {
+    private PGPoolingDataSource ds;
     private Connection connection;
     private Statement statement;
     private ResultSet rs;
+
+     JDBCService(){
+         ds = new PGPoolingDataSource();
+         ds.setServerName("localhost");
+         ds.setDatabaseName("postgres");
+         ds.setUser("postgres");
+         ds.setPassword("password");
+         ds.setMaxConnections(100);
+         ds.setInitialConnections(20);
+     }
     public void setConnection() {       //set connection to database
-        String url = "jdbc:postgresql://localhost:5432/postgres";
+        /*String url = "jdbc:postgresql://localhost:5432/postgres";
         String name = "postgres";
-        String password = "password";
+        String password = "password";*/
         try {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(url, name, password);
+            /*Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(url, name, password);*/
+            connection = ds.getConnection();
             statement = connection.createStatement();
             System.out.println("Database connected\n");
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -72,13 +85,19 @@ public class JDBCService {
     }
     public void closeDB()
     {
+        /*connection.close();
+        statement.close();
+        rs.close();*/
         try {
             connection.close();
             statement.close();
             rs.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+        /*if ( ds != null ) {
+            ds.close();
+        }*/
         System.out.println("Connections were closed\n");
     }
 }
