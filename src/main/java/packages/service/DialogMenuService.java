@@ -80,11 +80,9 @@ public class DialogMenuService {
 
     public void dbMenu() {               // menu fo working with database
         DBCarServiceImpl dbService = new DBCarServiceImpl();
-        dbService.setConnection();
-        /*dbService.createDB();
-        dbService.writeDB();*/
+        /*Main.source.createDB();
+        Main.source.writeDB();*/
         commonActions(dbService, null,null);
-        dbService.closeDB();
     }
 
     public void jsonMenu() {            // menu fo working with json

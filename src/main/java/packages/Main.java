@@ -1,12 +1,17 @@
 package packages;
 
+import packages.service.DBPoolService;
 import packages.service.DialogMenuService;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner sc = new Scanner(System.in);
+    public static DBPoolService source;
     public static void main(String[] args) {
+        source = new DBPoolService();
+        source.setConnection();
         chooseAction();         //actions in main menu
+        source.closeConnection();
     }
     private static void chooseAction() {
         int chooseAct=4;   //int for saving choose
