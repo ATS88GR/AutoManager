@@ -12,8 +12,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * the class to read/write json files
+ */
 public class JsonReadWriteServiceImpl implements ReadWriteService {
 
+    /**
+     * to parse json information from
+     * @param url to
+     * @return string
+     */
     public String parseUrl(URL url){
         if (url == null) {
             return "";
@@ -31,6 +39,10 @@ public class JsonReadWriteServiceImpl implements ReadWriteService {
         return stringBuilder.toString();
     }
 
+    /**
+     * to print of parsing result of JSON string
+     * @param resultJson
+     */
     public void parseCarJson(String resultJson){
         try {
             JSONObject carJsonObject = (JSONObject) JSONValue.parseWithException(resultJson);
@@ -42,6 +54,12 @@ public class JsonReadWriteServiceImpl implements ReadWriteService {
             e.printStackTrace();
         }
     }
+
+    /**
+     * to build json array string of a Car objects from Car
+     * @param list
+     * @return json array string of a Car objects
+     */
     public String buildCarsJson(ArrayList<Car> list){
         JSONArray jsonArray = new JSONArray();
         for (Car car: list){

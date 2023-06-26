@@ -6,9 +6,17 @@ import packages.utils.TestCar;
 
 import java.util.ArrayList;
 
+/**
+ *The class provides a dialog menu with service calls
+ */
 public class DialogMenuService {
 
-    //common actions for database, json, txt
+    /**
+     * common actions for database, json, txt
+     * @param carService for implemented CarService interface classes
+     * @param rwService for implemented ReadWrite interface classes
+     * @param carList it is the ArrayList of the Car objects
+     */
     private void commonActions(CarService carService, ReadWriteService rwService, ArrayList <Car> carList){
         int chooseAct = 11;
         do {
@@ -78,14 +86,27 @@ public class DialogMenuService {
         }while (chooseAct!=11);
     }
 
-    public void dbMenu() {               // menu fo working with database
+    /**
+     * the method to create an
+     * @see DBCarServiceImpl obgect, that implements
+     * @see CarService interface
+     */
+    public void dbMenu() {
         DBCarServiceImpl dbService = new DBCarServiceImpl();
-        /*Main.source.createDB();
-        Main.source.writeDB();*/
+        /*Main.source.createDBTable();          //create table
+        Main.source.writeDB();                //fill the table*/
         commonActions(dbService, null,null);
+        //the rwService for json is null because of it is launched inside the method,
+        //the carList is null because it is formed as a result of a database query
     }
 
-    public void jsonMenu() {            // menu fo working with json
+    /**
+     * the method to create an
+     * @see JsonReadWriteServiceImpl obgect to read car list from json file,
+     * and create
+     * @see CarServiceImpl object to pass it to a commonActions()
+     */
+    public void jsonMenu() {
         ArrayList<Car> garage = TestCar.getGarage();
         JsonReadWriteServiceImpl jsonRWService = new JsonReadWriteServiceImpl();
         System.out.println("Write json file name:");
@@ -94,7 +115,13 @@ public class DialogMenuService {
         commonActions(carService, new JsonReadWriteServiceImpl(), garage);
     }
 
-    public void txtMenu() {             // menu fo working with txt files
+    /**
+     * the method to create an
+     * @see TxtReadWriteServiceImpl obgect to read car list from txt file,
+     * and create
+     * @see CarServiceImpl object to pass it to a commonActions()
+     */
+    public void txtMenu() {
         ArrayList<Car> garage = TestCar.getGarage();
         TxtReadWriteServiceImpl rwService = new TxtReadWriteServiceImpl();
         System.out.println("Write txt file name:");

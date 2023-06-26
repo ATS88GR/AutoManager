@@ -5,6 +5,9 @@ import packages.model.Car;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * the class for read/write txt files
+ */
 public class TxtReadWriteServiceImpl implements ReadWriteService {
 
     public void fileWriter(ArrayList<Car> list, String fileName) {

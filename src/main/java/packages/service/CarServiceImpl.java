@@ -103,6 +103,14 @@ public class CarServiceImpl implements CarService {
         System.out.println();
         return list;
     }
+
+    /**
+     * to replace elements in Car objects list between index1 and index2
+     * @param list
+     * @param index1
+     * @param index2
+     * @return Car objects list
+     */
     private ArrayList<Car> replaceElements(ArrayList<Car> list, int index1, int index2){
         Car tempCar = list.get(index2);
         list.set((index2), list.get(index1));

@@ -7,12 +7,23 @@ import java.util.Scanner;
 public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static DBPoolService source;
+
+    /**
+     * the main method starts the database connection pool class
+     * @see DBPoolService
+     * and start menu
+     * @param args
+     */
     public static void main(String[] args) {
         source = new DBPoolService();
         source.setConnection();
-        chooseAction();         //actions in main menu
+        chooseAction();         //actions in start menu
         source.closeConnection();
     }
+
+    /**
+     *The method with actions in start menu
+     */
     private static void chooseAction() {
         int chooseAct=4;   //int for saving choose
         try {
@@ -26,7 +37,7 @@ public class Main {
                         """);
                 if (sc.hasNextLine()) {
                     chooseAct = Integer.parseInt(sc.nextLine());
-                    actions(chooseAct);
+                    actions(chooseAct);         //
                 }
             }while (chooseAct != 4);
         } catch (Exception e) {
@@ -34,6 +45,10 @@ public class Main {
         }
     }
 
+    /**
+     *the method served chooseAction method to switch between choosing actions
+     * @param act for saving choose from start menu
+     */
     private static void actions(int act) {
         DialogMenuService dialogMenuService = new DialogMenuService();
         switch (act) {

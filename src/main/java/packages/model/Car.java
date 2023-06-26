@@ -15,6 +15,5 @@ public class Car {
     private int cost;
 
     public Car() {
-
     }
 }

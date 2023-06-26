@@ -3,8 +3,15 @@ package packages.utils;
 import packages.model.Car;
 import java.util.ArrayList;
 
+/**
+ * The class to create test list of a car objects
+ */
 public class TestCar {
 
+    /**
+     * to create
+     * @return Car objects list
+     */
     public static ArrayList<Car> getGarage() {
         ArrayList<Car> garage = new ArrayList<>();
         garage.add(new Car(2002,"Mercedes", "w140", 15000));

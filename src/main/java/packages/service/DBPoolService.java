@@ -1,12 +1,14 @@
 package packages.service;
 
 import lombok.Getter;
-import lombok.Setter;
 import org.postgresql.ds.PGPoolingDataSource;
 
 import java.sql.*;
 @Getter
 
+/**
+ *The class served database connections
+ */
 public class DBPoolService {
     private PGPoolingDataSource ds;
     private Connection connection;
@@ -22,7 +24,11 @@ public class DBPoolService {
          ds.setMaxConnections(100);
          ds.setInitialConnections(20);
      }
-    public void setConnection() {       //set connection to database
+
+    /**
+     *to set connection with database
+     */
+    public void setConnection() {
         try {
             connection = ds.getConnection();
             statement = connection.createStatement();
@@ -31,7 +37,11 @@ public class DBPoolService {
             System.out.println(e.getMessage());
         }
     }
-    public void createDB(){
+
+    /**
+     *to create database table
+     */
+    public void createDBTable(){
         try {
             statement.execute("CREATE TABLE if not exists Garage (Id SERIAL PRIMARY KEY NOT NULL, Year INT NOT NULL,Brand varchar(30) NOT NULL CHECK(trim(brand)!=''), Model varchar(30) NOT NULL CHECK(trim(model)!=''), Cost INT NOT NULL);");
         } catch (SQLException e) {
@@ -39,6 +49,9 @@ public class DBPoolService {
         }
     }
 
+    /**
+     *to write the data into the table
+     */
     public void writeDB(){
         try {
             statement.execute("INSERT INTO Garage (Year, Brand, Model, Cost)" +
@@ -63,6 +76,10 @@ public class DBPoolService {
         }
     }
 
+    /**
+     * to set any statement with query
+     * @param query is a sql statement script
+     */
     public void setStatement(String query){
         try {
             statement.execute(query);
@@ -71,6 +88,10 @@ public class DBPoolService {
         }
     }
 
+    /**
+     * to read result of set query
+     * @param query is a sql statement script
+     */
     public void readDB(String query){
         try {
             rs=statement.executeQuery(query);
@@ -78,6 +99,10 @@ public class DBPoolService {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * to close database connection
+     */
     public void closeConnection()
     {
         try {
@@ -87,6 +112,6 @@ public class DBPoolService {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("\nDatabase connections were closed\n");
+        System.out.println("\nDatabase connection closed\n");
     }
 }
