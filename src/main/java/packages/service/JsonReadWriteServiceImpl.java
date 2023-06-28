@@ -18,8 +18,8 @@ import java.util.Iterator;
 public class JsonReadWriteServiceImpl implements ReadWriteService {
 
     /**
-     * to parse json information from
-     * @param url to
+     * Parses json information from url to string
+     * @param url Uniform Resource Locator,
      * @return string
      */
     public String parseUrl(URL url){
@@ -40,8 +40,8 @@ public class JsonReadWriteServiceImpl implements ReadWriteService {
     }
 
     /**
-     * to print of parsing result of JSON string
-     * @param resultJson
+     * Prints parsing result of JSON string
+     * @param resultJson json info in string format
      */
     public void parseCarJson(String resultJson){
         try {
@@ -56,8 +56,9 @@ public class JsonReadWriteServiceImpl implements ReadWriteService {
     }
 
     /**
-     * to build json array string of a Car objects from Car
-     * @param list
+     * Builds json array string of a Car objects from Car object list,
+     * returns json array string of a Car objects
+     * @param list Car object list
      * @return json array string of a Car objects
      */
     public String buildCarsJson(ArrayList<Car> list){

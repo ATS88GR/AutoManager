@@ -9,7 +9,7 @@ public class Main {
     public static DBPoolService source;
 
     /**
-     * the main method starts the database connection pool class
+     * Starts the database connection pool class
      * @see DBPoolService
      * and start menu
      * @param args
@@ -22,7 +22,7 @@ public class Main {
     }
 
     /**
-     *The method with actions in start menu
+     *Shows actions in start menu and transmit saving choose to actions() method
      */
     private static void chooseAction() {
         int chooseAct=4;   //int for saving choose
@@ -46,7 +46,7 @@ public class Main {
     }
 
     /**
-     *the method served chooseAction method to switch between choosing actions
+     *Serves chooseAction method to switch between choosing actions
      * @param act for saving choose from start menu
      */
     private static void actions(int act) {

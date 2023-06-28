@@ -9,28 +9,28 @@ import java.util.ArrayList;
  */
 public interface CarService {
     /**
-     * to get max cost Car objects from
+     * Gets max cost Car objects from list Car objects, returns list Car objects
      * @param list Car objects
      * @return list Car objects
      */
     ArrayList<Car> getMaxCostCar(ArrayList<Car> list);
 
     /**
-     * to get min cost Car objects from
+     * Gets min cost Car objects from list Car objects, return list Car objects
      * @param list Car objects
      * @return list Car objects
      */
     ArrayList<Car> getMinCostCar(ArrayList<Car> list);
     /**
-     * to find Car objects with brand
-     * @param searchBrand from
+     * Finds Car objects with brand searchBrand from list Car objects, returns list Car objects
+     * @param searchBrand it is a string of search brand
      * @param list Car objects
      * @return list Car objects
      */
     ArrayList<Car> findBrandList(String searchBrand, ArrayList<Car> list);
 
     /**
-     * to find Car objects with model
+     * Finds Car objects with model searchModel from list Car objects, returns list Car objects
      * @param searchModel from
      * @param list Car objects
      * @return list Car objects
@@ -38,31 +38,32 @@ public interface CarService {
     ArrayList<Car> findModelList(String searchModel, ArrayList<Car> list);
 
     /**
-     * to get Car objects by price range from start price
-     * @param startPrice to end price
-     * @param endPrice from list
-     * @param list Car objects
+     * Gets Car objects by price range from start price startPrice to end price endPrice from list
+     * of Car objects, returns Car objects
+     * @param startPrice int of start price
+     * @param endPrice int of end price
+     * @param list Car objects list
      * @return list Car objects
      */
     ArrayList<Car> getListByPriceRange(int startPrice, int endPrice, ArrayList<Car> list);
 
     /**
-     * to sort list
-     * @param list Car objects by price
-     * @return list Car objects
+     * Sorts Car objects list by price, returns Car objects list
+     * @param list Car objects list
+     * @return Car objects list
      */
     ArrayList<Car> sortListByPrice(ArrayList<Car> list);
 
     /**
-     * to sort list
-     * @param list Car objects by price
-     * @return list Car objects
+     * Sorts Car objects list by brand, returns Car objects list
+     * @param list Car objects list
+     * @return Car objects list
      */
     ArrayList<Car> sortListByBrand(ArrayList<Car> list) ;
 
     /**
-     * to print list
-     * @param list Car objects
+     * Prints Car objects list
+     * @param list Car objects list
      */
     default void printCarList(ArrayList<Car> list){
         list.forEach(car -> {

@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class DialogMenuService {
 
     /**
-     * common actions for database, json, txt
+     * Contains common actions for database, json, txt
      * @param carService for implemented CarService interface classes
-     * @param rwService for implemented ReadWrite interface classes
+     * @param rwService for implemented ReadWriteService interface classes
      * @param carList it is the ArrayList of the Car objects
      */
     private void commonActions(CarService carService, ReadWriteService rwService, ArrayList <Car> carList){
@@ -87,9 +87,9 @@ public class DialogMenuService {
     }
 
     /**
-     * the method to create an
-     * @see DBCarServiceImpl obgect, that implements
-     * @see CarService interface
+     * Creates an DBCarServiceImpl object, that implements CarService interface
+     * @see DBCarServiceImpl
+     * @see CarService
      */
     public void dbMenu() {
         DBCarServiceImpl dbService = new DBCarServiceImpl();
@@ -101,10 +101,10 @@ public class DialogMenuService {
     }
 
     /**
-     * the method to create an
-     * @see JsonReadWriteServiceImpl obgect to read car list from json file,
-     * and create
-     * @see CarServiceImpl object to pass it to a commonActions()
+     * Creates an JsonReadWriteServiceImpl object to read car list from json file, and create
+     * CarServiceImpl object to pass it to a commonActions()
+     * @see JsonReadWriteServiceImpl
+     * @see CarServiceImpl
      */
     public void jsonMenu() {
         ArrayList<Car> garage = TestCar.getGarage();
@@ -116,10 +116,10 @@ public class DialogMenuService {
     }
 
     /**
-     * the method to create an
-     * @see TxtReadWriteServiceImpl obgect to read car list from txt file,
-     * and create
-     * @see CarServiceImpl object to pass it to a commonActions()
+     * Creates an TxtReadWriteServiceImpl object to read car list from txt file,
+     * and create CarServiceImpl object to pass it to a commonActions()
+     * @see TxtReadWriteServiceImpl
+     * @see CarServiceImpl
      */
     public void txtMenu() {
         ArrayList<Car> garage = TestCar.getGarage();

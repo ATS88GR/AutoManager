@@ -12,7 +12,9 @@ import java.util.ArrayList;
 public class DBCarServiceImpl implements CarService{
 
     /**
-     * the method for getting a car objects list, according to the current resul set of the database
+     * Gets a car objects list, according to the current result set of the database,
+     * returns the list Car objects,
+     * parameter toPrint needs to choose whether the list can be printed
      * @param toPrint is parameter to choose whether the list can be printed
      * @return the list Car objects
      */
@@ -38,7 +40,7 @@ public class DBCarServiceImpl implements CarService{
 
     @Override
     /**
-     * to get the list of max cost Car objects from database
+     * Gets the list of max cost Car objects from database, parameter list is null
      * @param list is null
      */
     public ArrayList<Car> getMaxCostCar(ArrayList<Car> list) {
@@ -49,7 +51,7 @@ public class DBCarServiceImpl implements CarService{
 
     @Override
     /**
-     * to get the list of min cost Car objects from database
+     * Gets the list of min cost Car objects from database, parameter list is null
      * @param list is null
      */
     public ArrayList<Car> getMinCostCar(ArrayList<Car> list) {
@@ -60,7 +62,7 @@ public class DBCarServiceImpl implements CarService{
 
     @Override
     /**
-     * to find the list of Car objects of the same brand from database
+     * Finds the list of Car objects of the same brand from database, parameter list is null
      * @param list is null
      */
     public ArrayList<Car> findBrandList(String searchBrand, ArrayList<Car> list) {
@@ -70,7 +72,7 @@ public class DBCarServiceImpl implements CarService{
 
     @Override
     /**
-     * to find the list of Car objects of the same model from database
+     * Finds the list of Car objects of the same model from database, parameter list is null
      * @param list is null
      */
     public ArrayList<Car> findModelList(String searchModel, ArrayList<Car> list) {
@@ -80,7 +82,7 @@ public class DBCarServiceImpl implements CarService{
 
     @Override
     /**
-     * to get the list of Car objects ranked by price from database
+     * Gets the list of Car objects ranked by price from database, parameter list is null
      * @param list is null
      */
     public ArrayList<Car> getListByPriceRange(int startPrice, int endPrice, ArrayList<Car> list) {
@@ -91,7 +93,7 @@ public class DBCarServiceImpl implements CarService{
 
     @Override
     /**
-     * to get the list of Car objects sorted by price from database
+     * Get the list of Car objects sorted by price from database, parameter list is null
      * @param list is null
      */
     public ArrayList<Car> sortListByPrice(ArrayList<Car> list) {
@@ -101,7 +103,7 @@ public class DBCarServiceImpl implements CarService{
 
     @Override
     /**
-     * to get the list of Car objects sorted by brand from database
+     * Gets the list of Car objects sorted by brand from database, parameter list is null
      * @param list is null
      */
     public ArrayList<Car> sortListByBrand(ArrayList<Car> list) {
@@ -110,7 +112,7 @@ public class DBCarServiceImpl implements CarService{
     }
 
     /**
-     * to get resul set of any query from database
+     * Gets result set of any query from database
      * @param query is a string of sql script
      * @return the list of car objects
      */

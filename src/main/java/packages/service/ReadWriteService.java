@@ -9,15 +9,15 @@ import java.util.ArrayList;
 public interface ReadWriteService {
 
     /**
-     * to write
-     * @param list to file with name
-     * @param fileName
+     * Writes fields of Car objects list to file with name fileName
+     * @param list Car objects list
+     * @param fileName file name
      */
     void fileWriter(ArrayList<Car> list, String fileName);
 
     /**
-     * to read file with name
-     * @param fileName
+     * Reads file with name fileName, returns Car objects list
+     * @param fileName file name
      * @return list of Car objects
      */
     ArrayList<Car> fileReader(String fileName);

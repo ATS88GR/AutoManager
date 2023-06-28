@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class TestCar {
 
     /**
-     * to create
+     * Creates Car objects list
      * @return Car objects list
      */
     public static ArrayList<Car> getGarage() {

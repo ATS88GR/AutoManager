@@ -7,7 +7,7 @@ import java.sql.*;
 @Getter
 
 /**
- *The class served database connections
+ *The class serves database connections
  */
 public class DBPoolService {
     private PGPoolingDataSource ds;
@@ -26,7 +26,7 @@ public class DBPoolService {
      }
 
     /**
-     *to set connection with database
+     *Sets connection with database
      */
     public void setConnection() {
         try {
@@ -39,7 +39,7 @@ public class DBPoolService {
     }
 
     /**
-     *to create database table
+     *Creates database table
      */
     public void createDBTable(){
         try {
@@ -50,7 +50,7 @@ public class DBPoolService {
     }
 
     /**
-     *to write the data into the table
+     * Writes the data into the table
      */
     public void writeDB(){
         try {
@@ -77,7 +77,7 @@ public class DBPoolService {
     }
 
     /**
-     * to set any statement with query
+     * Sets any statement with sql query
      * @param query is a sql statement script
      */
     public void setStatement(String query){
@@ -89,7 +89,7 @@ public class DBPoolService {
     }
 
     /**
-     * to read result of set query
+     * Reads result set of sql query
      * @param query is a sql statement script
      */
     public void readDB(String query){
@@ -101,7 +101,7 @@ public class DBPoolService {
     }
 
     /**
-     * to close database connection
+     * Closes database connection
      */
     public void closeConnection()
     {
