@@ -1,4 +1,4 @@
-package packages.service;
+package com.education.projects.cars.manager.carsmanager.service;
 
 import lombok.Getter;
 import org.postgresql.ds.PGPoolingDataSource;
@@ -10,12 +10,13 @@ import java.sql.*;
  *The class serves database connections
  */
 public class DBPoolService {
+    private static DBPoolService instance;
     private PGPoolingDataSource ds;
     private Connection connection;
     private Statement statement;
     private ResultSet rs;
 
-     public DBPoolService(){
+     private DBPoolService(){
          ds = new PGPoolingDataSource();
          ds.setServerName("localhost");
          ds.setDatabaseName("postgres");
@@ -25,6 +26,11 @@ public class DBPoolService {
          ds.setInitialConnections(20);
      }
 
+     public static DBPoolService getInstance(){
+         if(DBPoolService.instance == null)
+             DBPoolService.instance = new DBPoolService();
+         return DBPoolService.instance;
+     }
     /**
      *Sets connection with database
      */

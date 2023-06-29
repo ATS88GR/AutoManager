@@ -1,6 +1,6 @@
-package packages.utils;
+package com.education.projects.cars.manager.carsmanager.utils;
 
-import packages.model.Car;
+import com.education.projects.cars.manager.carsmanager.model.Car;
 import java.util.ArrayList;
 
 /**

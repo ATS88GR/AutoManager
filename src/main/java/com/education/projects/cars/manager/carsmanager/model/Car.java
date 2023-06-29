@@ -1,4 +1,4 @@
-package packages.model;
+package com.education.projects.cars.manager.carsmanager.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

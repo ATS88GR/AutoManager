@@ -1,11 +1,11 @@
-package packages.service;
+package com.education.projects.cars.manager.carsmanager.service;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import packages.model.Car;
+import com.education.projects.cars.manager.carsmanager.model.Car;
 
 import java.io.*;
 import java.net.URL;
