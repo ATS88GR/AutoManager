@@ -2,38 +2,34 @@ package com.education.projects.cars.manager.carsmanager.service;
 
 import lombok.Getter;
 import org.postgresql.ds.PGPoolingDataSource;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.sql.*;
 @Getter
 
-/**
- *The class serves database connections
- */
+@Service
 public class DBPoolService {
-    private static DBPoolService instance;
     private PGPoolingDataSource ds;
     private Connection connection;
     private Statement statement;
     private ResultSet rs;
 
-     private DBPoolService(){
-         ds = new PGPoolingDataSource();
-         ds.setServerName("localhost");
-         ds.setDatabaseName("postgres");
-         ds.setUser("postgres");
-         ds.setPassword("password");
-         ds.setMaxConnections(100);
-         ds.setInitialConnections(20);
-     }
-
-     public static DBPoolService getInstance(){
-         if(DBPoolService.instance == null)
-             DBPoolService.instance = new DBPoolService();
-         return DBPoolService.instance;
-     }
     /**
      *Sets connection with database
      */
+    @PostConstruct
+    public void init(){
+        ds = new PGPoolingDataSource();
+        ds.setServerName("localhost");
+        ds.setDatabaseName("postgres");
+        ds.setUser("postgres");
+        ds.setPassword("password");
+        ds.setMaxConnections(100);
+        ds.setInitialConnections(20);
+        setConnection();
+    }
     public void setConnection() {
         try {
             connection = ds.getConnection();
@@ -109,6 +105,7 @@ public class DBPoolService {
     /**
      * Closes database connection
      */
+    @PreDestroy
     public void closeConnection()
     {
         try {

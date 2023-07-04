@@ -1,6 +1,8 @@
 package com.education.projects.cars.manager.carsmanager.service;
 
 import com.education.projects.cars.manager.carsmanager.model.Car;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 
 /**

@@ -1,6 +1,8 @@
 package com.education.projects.cars.manager.carsmanager.service;
 
 import com.education.projects.cars.manager.carsmanager.model.Car;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 /**
  * the class for read/write txt files
  */
+@Service
 public class TxtReadWriteServiceImpl implements ReadWriteService {
 
     public void fileWriter(ArrayList<Car> list, String fileName) {

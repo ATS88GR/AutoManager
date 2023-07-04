@@ -6,6 +6,7 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.education.projects.cars.manager.carsmanager.model.Car;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.net.URL;
@@ -15,6 +16,7 @@ import java.util.Iterator;
 /**
  * the class to read/write json files
  */
+@Service
 public class JsonReadWriteServiceImpl implements ReadWriteService {
 
     /**
