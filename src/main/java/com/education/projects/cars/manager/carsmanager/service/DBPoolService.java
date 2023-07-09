@@ -1,5 +1,6 @@
 package com.education.projects.cars.manager.carsmanager.service;
 
+import com.education.projects.cars.manager.carsmanager.model.Car;
 import lombok.Getter;
 import org.postgresql.ds.PGPoolingDataSource;
 import org.springframework.stereotype.Service;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.sql.*;
+import java.util.Collection;
+
 @Getter
 
 @Service
@@ -79,10 +82,10 @@ public class DBPoolService {
     }
 
     /**
-     * Sets any statement with sql query
+     * Executes the given sql statement, which may return multiple results
      * @param query is a sql statement script
      */
-    public void setStatement(String query){
+    public void statementExe(String query){
         try {
             statement.execute(query);
         } catch (SQLException e) {
@@ -91,10 +94,10 @@ public class DBPoolService {
     }
 
     /**
-     * Reads result set of sql query
+     * Executes the given sql statement, which returns a single ResultSet object
      * @param query is a sql statement script
      */
-    public void readDB(String query){
+    public void statementExeQuery(String query){
         try {
             rs=statement.executeQuery(query);
         } catch (SQLException e) {

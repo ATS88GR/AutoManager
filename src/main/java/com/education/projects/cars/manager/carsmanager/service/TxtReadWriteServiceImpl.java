@@ -17,8 +17,8 @@ public class TxtReadWriteServiceImpl implements ReadWriteService {
         fileName = fileName + ".txt";
         try (FileWriter writer = new FileWriter(new File(fileName), false)) {
             list.forEach(car -> {
-                String strF = String.format("Year: %d, brand: %s, model: %s, cost: %d\n",
-                        car.getYear(), car.getBrand(), car.getModel(), car.getCost());
+                String strF = String.format("Id: %d, year: %d, brand: %s, model: %s, cost: %d\n",
+                         car.getId(), car.getYear(), car.getBrand(), car.getModel(), car.getCost());
                 //System.out.print(strF);
                 try {
                     writer.write(strF);
@@ -42,8 +42,8 @@ public class TxtReadWriteServiceImpl implements ReadWriteService {
             while((s=br.readLine())!=null){
                 System.out.println(s);
                 String [] sArr = s.split(",");
-                list.add(new Car(Integer.parseInt(sArr[0].substring(6)), sArr[1].substring(8),
-                        sArr[2].substring(8), Integer.parseInt(sArr[3].substring(7))));
+                list.add(new Car(Integer.parseInt(sArr[0].substring(4)), Integer.parseInt(sArr[1].substring(6)), sArr[2].substring(8),
+                        sArr[3].substring(8), Integer.parseInt(sArr[4].substring(7))));
             }
             System.out.println();
             return list;

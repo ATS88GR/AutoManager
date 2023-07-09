@@ -1,0 +1,210 @@
+2023-07-08 08:22:17,870 DEBUG [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter: ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-07-08 08:22:17,952 TRACE [main] org.springframework.web.servlet.handler.AbstractHandlerMethodMapping: 
+	c.e.p.c.m.c.c.AutoController:
+	{GET [/cars/{id}]}: getCarById(Long)
+	{DELETE [/cars/{id}]}: deleteCarById(Long)
+	{POST [/cars]}: createCar(Car)
+	{PUT [/cars/{id}]}: updateCar(Car,Long)
+	{GET [/cars]}: getCars()
+2023-07-08 08:22:17,960 TRACE [main] org.springframework.web.servlet.handler.AbstractHandlerMethodMapping: 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2023-07-08 08:22:17,963 DEBUG [main] org.springframework.web.servlet.handler.AbstractHandlerMethodMapping: 7 mappings in 'requestMappingHandlerMapping'
+2023-07-08 08:22:17,969 DEBUG [main] org.springframework.web.servlet.handler.AbstractDetectingUrlHandlerMapping: Detected 0 mappings in 'beanNameHandlerMapping'
+2023-07-08 08:22:17,973 TRACE [main] org.springframework.web.servlet.function.support.RouterFunctionMapping: 0 RouterFunction(s) in 'routerFunctionMapping'
+2023-07-08 08:22:17,983 TRACE [main] org.springframework.web.servlet.handler.AbstractUrlHandlerMapping: Mapped [/webjars/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-07-08 08:22:17,984 TRACE [main] org.springframework.web.servlet.handler.AbstractUrlHandlerMapping: Mapped [/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2023-07-08 08:22:17,984 DEBUG [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping: Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-07-08 08:22:17,996 DEBUG [main] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-07-08 08:22:41,094 INFO [http-nio-8080-exec-3] org.springframework.web.servlet.FrameworkServlet: Initializing Servlet 'dispatcherServlet'
+2023-07-08 08:22:41,095 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.DispatcherServlet: Detected org.springframework.web.multipart.support.StandardServletMultipartResolver@1ab6b678
+2023-07-08 08:22:41,096 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.DispatcherServlet: Detected org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@36f35c87
+2023-07-08 08:22:41,096 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.DispatcherServlet: Detected org.springframework.web.servlet.theme.FixedThemeResolver@5ac63a18
+2023-07-08 08:22:41,097 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.DispatcherServlet: Detected DefaultRequestToViewNameTranslator
+2023-07-08 08:22:41,098 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.DispatcherServlet: Detected SessionFlashMapManager
+2023-07-08 08:22:41,098 DEBUG [http-nio-8080-exec-3] org.springframework.web.servlet.FrameworkServlet: enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-07-08 08:22:41,099 INFO [http-nio-8080-exec-3] org.springframework.web.servlet.FrameworkServlet: Completed initialization in 3 ms
+2023-07-08 08:22:41,109 TRACE [http-nio-8080-exec-3] org.springframework.core.log.LogFormatUtils: GET "/cars", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2023-07-08 08:22:41,122 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.handler.AbstractHandlerMapping: Mapped to com.education.projects.cars.manager.carsmanager.controller.AutoController#getCars()
+2023-07-08 08:22:41,132 TRACE [http-nio-8080-exec-3] org.springframework.web.method.support.InvocableHandlerMethod: Arguments: []
+2023-07-08 08:22:41,155 DEBUG [http-nio-8080-exec-3] org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor: Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2023-07-08 08:22:41,156 TRACE [http-nio-8080-exec-3] org.springframework.core.log.LogFormatUtils: Writing [[com.education.projects.cars.manager.carsmanager.model.Car@5a03c063, com.education.projects.cars.manager.carsmanager.model.Car@211f0278, com.education.projects.cars.manager.carsmanager.model.Car@13d1b886, com.education.projects.cars.manager.carsmanager.model.Car@5666a95c, com.education.projects.cars.manager.carsmanager.model.Car@12a27b2b, com.education.projects.cars.manager.carsmanager.model.Car@4b77a7c5, com.education.projects.cars.manager.carsmanager.model.Car@557c33a5, com.education.projects.cars.manager.carsmanager.model.Car@36335c1f, com.education.projects.cars.manager.carsmanager.model.Car@37c902d1, com.education.projects.cars.manager.carsmanager.model.Car@4176d262, com.education.projects.cars.manager.carsmanager.model.Car@752320f2, com.education.projects.cars.manager.carsmanager.model.Car@595c49ed, com.education.projects.cars.manager.carsmanager.model.Car@267c179d, com.education.projects.cars.manager.carsmanager.model.Car@516e24f2, com.education.projects.cars.manager.carsmanager.model.Car@3da6ba9d, com.education.projects.cars.manager.carsmanager.model.Car@60e9fe5, com.education.projects.cars.manager.carsmanager.model.Car@4088a046, com.education.projects.cars.manager.carsmanager.model.Car@60e15511, com.education.projects.cars.manager.carsmanager.model.Car@681b79c2, com.education.projects.cars.manager.carsmanager.model.Car@1a982293, com.education.projects.cars.manager.carsmanager.model.Car@1f172b16]]
+2023-07-08 08:22:41,199 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.support.WebContentGenerator: Applying default cacheSeconds=-1
+2023-07-08 08:22:41,199 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.DispatcherServlet: No view rendering, null ModelAndView returned.
+2023-07-08 08:22:41,199 DEBUG [http-nio-8080-exec-3] org.springframework.web.servlet.FrameworkServlet: Completed 200 OK, headers={masked}
+2023-07-08 08:24:00,242 TRACE [http-nio-8080-exec-5] org.springframework.core.log.LogFormatUtils: POST "/cars", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2023-07-08 08:24:00,250 TRACE [http-nio-8080-exec-5] org.springframework.web.servlet.handler.AbstractHandlerMapping: Mapped to com.education.projects.cars.manager.carsmanager.controller.AutoController#createCar(Car)
+2023-07-08 08:24:00,285 TRACE [http-nio-8080-exec-5] org.springframework.core.log.LogFormatUtils: Read "application/json;charset=UTF-8" to [com.education.projects.cars.manager.carsmanager.model.Car@65dd7f76]
+2023-07-08 08:24:00,294 TRACE [http-nio-8080-exec-5] org.springframework.web.method.support.InvocableHandlerMethod: Arguments: [com.education.projects.cars.manager.carsmanager.model.Car@65dd7f76]
+2023-07-08 08:24:00,308 DEBUG [http-nio-8080-exec-5] org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor: Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2023-07-08 08:24:00,309 TRACE [http-nio-8080-exec-5] org.springframework.core.log.LogFormatUtils: Writing [com.education.projects.cars.manager.carsmanager.model.Car@37a0d44]
+2023-07-08 08:24:00,310 TRACE [http-nio-8080-exec-5] org.springframework.web.servlet.support.WebContentGenerator: Applying default cacheSeconds=-1
+2023-07-08 08:24:00,310 TRACE [http-nio-8080-exec-5] org.springframework.web.servlet.DispatcherServlet: No view rendering, null ModelAndView returned.
+2023-07-08 08:24:00,310 DEBUG [http-nio-8080-exec-5] org.springframework.web.servlet.FrameworkServlet: Completed 200 OK, headers={masked}
+2023-07-08 09:15:36,135 DEBUG [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter: ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-07-08 09:15:36,196 TRACE [main] org.springframework.web.servlet.handler.AbstractHandlerMethodMapping: 
+	c.e.p.c.m.c.c.AutoController:
+	{GET [/cars/{id}]}: getCarById(Long)
+	{DELETE [/cars/{id}]}: deleteCarById(Long)
+	{POST [/cars]}: createCar(Car)
+	{PUT [/cars/{id}]}: updateCar(Car,Long)
+	{GET [/cars]}: getCars()
+2023-07-08 09:15:36,202 TRACE [main] org.springframework.web.servlet.handler.AbstractHandlerMethodMapping: 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2023-07-08 09:15:36,204 DEBUG [main] org.springframework.web.servlet.handler.AbstractHandlerMethodMapping: 7 mappings in 'requestMappingHandlerMapping'
+2023-07-08 09:15:36,209 DEBUG [main] org.springframework.web.servlet.handler.AbstractDetectingUrlHandlerMapping: Detected 0 mappings in 'beanNameHandlerMapping'
+2023-07-08 09:15:36,212 TRACE [main] org.springframework.web.servlet.function.support.RouterFunctionMapping: 0 RouterFunction(s) in 'routerFunctionMapping'
+2023-07-08 09:15:36,220 TRACE [main] org.springframework.web.servlet.handler.AbstractUrlHandlerMapping: Mapped [/webjars/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-07-08 09:15:36,221 TRACE [main] org.springframework.web.servlet.handler.AbstractUrlHandlerMapping: Mapped [/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2023-07-08 09:15:36,221 DEBUG [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping: Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-07-08 09:15:36,228 DEBUG [main] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-07-08 09:16:03,408 INFO [http-nio-8080-exec-2] org.springframework.web.servlet.FrameworkServlet: Initializing Servlet 'dispatcherServlet'
+2023-07-08 09:16:03,409 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected org.springframework.web.multipart.support.StandardServletMultipartResolver@6ecb7edb
+2023-07-08 09:16:03,409 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@1a987603
+2023-07-08 09:16:03,409 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected org.springframework.web.servlet.theme.FixedThemeResolver@748aef0a
+2023-07-08 09:16:03,411 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected DefaultRequestToViewNameTranslator
+2023-07-08 09:16:03,411 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected SessionFlashMapManager
+2023-07-08 09:16:03,412 DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.FrameworkServlet: enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-07-08 09:16:03,412 INFO [http-nio-8080-exec-2] org.springframework.web.servlet.FrameworkServlet: Completed initialization in 3 ms
+2023-07-08 09:16:03,432 TRACE [http-nio-8080-exec-2] org.springframework.core.log.LogFormatUtils: GET "/cars", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2023-07-08 09:16:03,438 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.handler.AbstractHandlerMapping: Mapped to com.education.projects.cars.manager.carsmanager.controller.AutoController#getCars()
+2023-07-08 09:16:03,447 TRACE [http-nio-8080-exec-2] org.springframework.web.method.support.InvocableHandlerMethod: Arguments: []
+2023-07-08 09:16:03,477 DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor: Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2023-07-08 09:16:03,478 TRACE [http-nio-8080-exec-2] org.springframework.core.log.LogFormatUtils: Writing [[com.education.projects.cars.manager.carsmanager.model.Car@2dcfd1d1, com.education.projects.cars.manager.carsmanager.model.Car@32e4a682, com.education.projects.cars.manager.carsmanager.model.Car@111c295e, com.education.projects.cars.manager.carsmanager.model.Car@45767b9f, com.education.projects.cars.manager.carsmanager.model.Car@16e47bb9, com.education.projects.cars.manager.carsmanager.model.Car@1a31f51, com.education.projects.cars.manager.carsmanager.model.Car@718580e2, com.education.projects.cars.manager.carsmanager.model.Car@759b7ce, com.education.projects.cars.manager.carsmanager.model.Car@32552d2f, com.education.projects.cars.manager.carsmanager.model.Car@2b95f5a3, com.education.projects.cars.manager.carsmanager.model.Car@76cae2a3, com.education.projects.cars.manager.carsmanager.model.Car@3c67dc73, com.education.projects.cars.manager.carsmanager.model.Car@2740a285, com.education.projects.cars.manager.carsmanager.model.Car@23fc6323, com.education.projects.cars.manager.carsmanager.model.Car@2824205, com.education.projects.cars.manager.carsmanager.model.Car@849262, com.education.projects.cars.manager.carsmanager.model.Car@22724c7d, com.education.projects.cars.manager.carsmanager.model.Car@6257c66b, com.education.projects.cars.manager.carsmanager.model.Car@7255324e, com.education.projects.cars.manager.carsmanager.model.Car@5666b9e4, com.education.projects.cars.manager.carsmanager.model.Car@664716f1, com.education.projects.cars.manager.carsmanager.model.Car@3afff0cc]]
+2023-07-08 09:16:03,531 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.support.WebContentGenerator: Applying default cacheSeconds=-1
+2023-07-08 09:16:03,531 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: No view rendering, null ModelAndView returned.
+2023-07-08 09:16:03,533 DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.FrameworkServlet: Completed 200 OK, headers={masked}
+2023-07-08 09:23:16,632 DEBUG [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter: ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-07-08 09:23:16,701 TRACE [main] org.springframework.web.servlet.handler.AbstractHandlerMethodMapping: 
+	c.e.p.c.m.c.c.AutoController:
+	{GET [/cars/{id}]}: getCarById(Long)
+	{DELETE [/cars/{id}]}: deleteCarById(Long)
+	{POST [/cars]}: createCar(Car)
+	{PUT [/cars/{id}]}: updateCar(Car,Long)
+	{GET [/cars]}: getCars()
+2023-07-08 09:23:16,706 TRACE [main] org.springframework.web.servlet.handler.AbstractHandlerMethodMapping: 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2023-07-08 09:23:16,708 DEBUG [main] org.springframework.web.servlet.handler.AbstractHandlerMethodMapping: 7 mappings in 'requestMappingHandlerMapping'
+2023-07-08 09:23:16,713 DEBUG [main] org.springframework.web.servlet.handler.AbstractDetectingUrlHandlerMapping: Detected 0 mappings in 'beanNameHandlerMapping'
+2023-07-08 09:23:16,716 TRACE [main] org.springframework.web.servlet.function.support.RouterFunctionMapping: 0 RouterFunction(s) in 'routerFunctionMapping'
+2023-07-08 09:23:16,725 TRACE [main] org.springframework.web.servlet.handler.AbstractUrlHandlerMapping: Mapped [/webjars/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2023-07-08 09:23:16,725 TRACE [main] org.springframework.web.servlet.handler.AbstractUrlHandlerMapping: Mapped [/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2023-07-08 09:23:16,726 DEBUG [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping: Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-07-08 09:23:16,732 DEBUG [main] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-07-08 09:23:28,977 INFO [http-nio-8080-exec-2] org.springframework.web.servlet.FrameworkServlet: Initializing Servlet 'dispatcherServlet'
+2023-07-08 09:23:28,978 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected org.springframework.web.multipart.support.StandardServletMultipartResolver@7bdfc9a9
+2023-07-08 09:23:28,979 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@3d50bb8f
+2023-07-08 09:23:28,979 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected org.springframework.web.servlet.theme.FixedThemeResolver@f8cc3a3
+2023-07-08 09:23:28,980 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected DefaultRequestToViewNameTranslator
+2023-07-08 09:23:28,981 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: Detected SessionFlashMapManager
+2023-07-08 09:23:28,982 DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.FrameworkServlet: enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-07-08 09:23:28,982 INFO [http-nio-8080-exec-2] org.springframework.web.servlet.FrameworkServlet: Completed initialization in 4 ms
+2023-07-08 09:23:28,990 TRACE [http-nio-8080-exec-2] org.springframework.core.log.LogFormatUtils: GET "/cars", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2023-07-08 09:23:28,995 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.handler.AbstractHandlerMapping: Mapped to com.education.projects.cars.manager.carsmanager.controller.AutoController#getCars()
+2023-07-08 09:23:29,005 TRACE [http-nio-8080-exec-2] org.springframework.web.method.support.InvocableHandlerMethod: Arguments: []
+2023-07-08 09:23:29,038 DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor: Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2023-07-08 09:23:29,039 TRACE [http-nio-8080-exec-2] org.springframework.core.log.LogFormatUtils: Writing [[com.education.projects.cars.manager.carsmanager.model.Car@5360a382, com.education.projects.cars.manager.carsmanager.model.Car@1e805a24, com.education.projects.cars.manager.carsmanager.model.Car@39bcc17b, com.education.projects.cars.manager.carsmanager.model.Car@61e043c, com.education.projects.cars.manager.carsmanager.model.Car@50b4dbce, com.education.projects.cars.manager.carsmanager.model.Car@4c79fa86, com.education.projects.cars.manager.carsmanager.model.Car@13914d6b, com.education.projects.cars.manager.carsmanager.model.Car@65d884c1, com.education.projects.cars.manager.carsmanager.model.Car@1344591f, com.education.projects.cars.manager.carsmanager.model.Car@10ea3c3b, com.education.projects.cars.manager.carsmanager.model.Car@909d158, com.education.projects.cars.manager.carsmanager.model.Car@28d6a234, com.education.projects.cars.manager.carsmanager.model.Car@196b8a90, com.education.projects.cars.manager.carsmanager.model.Car@58216662, com.education.projects.cars.manager.carsmanager.model.Car@1fe5ff2f, com.education.projects.cars.manager.carsmanager.model.Car@2bf39e5, com.education.projects.cars.manager.carsmanager.model.Car@47c51c28, com.education.projects.cars.manager.carsmanager.model.Car@148460c4, com.education.projects.cars.manager.carsmanager.model.Car@24a8e9fc, com.education.projects.cars.manager.carsmanager.model.Car@5fa39c9d, com.education.projects.cars.manager.carsmanager.model.Car@3068ff1d, com.education.projects.cars.manager.carsmanager.model.Car@75d3b94]]
+2023-07-08 09:23:29,102 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.support.WebContentGenerator: Applying default cacheSeconds=-1
+2023-07-08 09:23:29,102 TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet: No view rendering, null ModelAndView returned.
+2023-07-08 09:23:29,103 DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.FrameworkServlet: Completed 200 OK, headers={masked}
+2023-07-08 09:23:42,836 TRACE [http-nio-8080-exec-3] org.springframework.core.log.LogFormatUtils: GET "/cars", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2023-07-08 09:23:42,837 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.handler.AbstractHandlerMapping: Mapped to com.education.projects.cars.manager.carsmanager.controller.AutoController#getCars()
+2023-07-08 09:23:42,837 TRACE [http-nio-8080-exec-3] org.springframework.web.method.support.InvocableHandlerMethod: Arguments: []
+2023-07-08 09:23:42,846 DEBUG [http-nio-8080-exec-3] org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor: Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2023-07-08 09:23:42,846 TRACE [http-nio-8080-exec-3] org.springframework.core.log.LogFormatUtils: Writing [[com.education.projects.cars.manager.carsmanager.model.Car@1d8ae4e3, com.education.projects.cars.manager.carsmanager.model.Car@4ffffa8e, com.education.projects.cars.manager.carsmanager.model.Car@2cdd1c87, com.education.projects.cars.manager.carsmanager.model.Car@37425c5b, com.education.projects.cars.manager.carsmanager.model.Car@7da51bac, com.education.projects.cars.manager.carsmanager.model.Car@4d3ea51c, com.education.projects.cars.manager.carsmanager.model.Car@943b118, com.education.projects.cars.manager.carsmanager.model.Car@2c4694ef, com.education.projects.cars.manager.carsmanager.model.Car@79eb82b0, com.education.projects.cars.manager.carsmanager.model.Car@4145ded4, com.education.projects.cars.manager.carsmanager.model.Car@559a7c95, com.education.projects.cars.manager.carsmanager.model.Car@4de36b25, com.education.projects.cars.manager.carsmanager.model.Car@68389e2b, com.education.projects.cars.manager.carsmanager.model.Car@7645e86, com.education.projects.cars.manager.carsmanager.model.Car@11ce42b, com.education.projects.cars.manager.carsmanager.model.Car@57f00d6e, com.education.projects.cars.manager.carsmanager.model.Car@7b95187d, com.education.projects.cars.manager.carsmanager.model.Car@5ea0e9e7, com.education.projects.cars.manager.carsmanager.model.Car@38fb73a4, com.education.projects.cars.manager.carsmanager.model.Car@6f3782a8, com.education.projects.cars.manager.carsmanager.model.Car@3cb239c3, com.education.projects.cars.manager.carsmanager.model.Car@65840063]]
+2023-07-08 09:23:42,848 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.support.WebContentGenerator: Applying default cacheSeconds=-1
+2023-07-08 09:23:42,848 TRACE [http-nio-8080-exec-3] org.springframework.web.servlet.DispatcherServlet: No view rendering, null ModelAndView returned.
+2023-07-08 09:23:42,848 DEBUG [http-nio-8080-exec-3] org.springframework.web.servlet.FrameworkServlet: Completed 200 OK, headers={masked}
+2023-07-08 10:13:44,758 ERROR [main] org.springframework.boot.SpringApplication: Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to process import candidates for configuration class [com.education.projects.cars.manager.carsmanager.AutoManagerApplication]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [org.springdoc.core.conditions.MultipleOpenApiSupportCondition]
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:610)
+	at org.springframework.context.annotation.ConfigurationClassParser.access$800(ConfigurationClassParser.java:111)
+	at org.springframework.context.annotation.ConfigurationClassParser$DeferredImportSelectorGroupingHandler.lambda$processGroupImports$1(ConfigurationClassParser.java:812)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1508)
+	at org.springframework.context.annotation.ConfigurationClassParser$DeferredImportSelectorGroupingHandler.processGroupImports(ConfigurationClassParser.java:809)
+	at org.springframework.context.annotation.ConfigurationClassParser$DeferredImportSelectorHandler.process(ConfigurationClassParser.java:780)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:193)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.education.projects.cars.manager.carsmanager.AutoManagerApplication.main(AutoManagerApplication.java:11)
+Caused by: java.lang.IllegalArgumentException: Unresolvable class definition for class [org.springdoc.core.conditions.MultipleOpenApiSupportCondition]
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:331)
+	at org.springframework.context.annotation.ConditionEvaluator.getCondition(ConditionEvaluator.java:124)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:96)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:226)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	... 19 common frames omitted
+Caused by: java.lang.UnsupportedClassVersionError: org/springdoc/core/conditions/MultipleOpenApiSupportCondition has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 57.0
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1017)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:151)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:719)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:642)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:600)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:416)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:324)
+	... 23 common frames omitted
+2023-07-08 10:40:58,889 ERROR [main] org.springframework.boot.SpringApplication: Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to process import candidates for configuration class [com.education.projects.cars.manager.carsmanager.AutoManagerApplication]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [org.springdoc.core.conditions.MultipleOpenApiSupportCondition]
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:610)
+	at org.springframework.context.annotation.ConfigurationClassParser.access$800(ConfigurationClassParser.java:111)
+	at org.springframework.context.annotation.ConfigurationClassParser$DeferredImportSelectorGroupingHandler.lambda$processGroupImports$1(ConfigurationClassParser.java:812)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1508)
+	at org.springframework.context.annotation.ConfigurationClassParser$DeferredImportSelectorGroupingHandler.processGroupImports(ConfigurationClassParser.java:809)
+	at org.springframework.context.annotation.ConfigurationClassParser$DeferredImportSelectorHandler.process(ConfigurationClassParser.java:780)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:193)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.education.projects.cars.manager.carsmanager.AutoManagerApplication.main(AutoManagerApplication.java:11)
+Caused by: java.lang.IllegalArgumentException: Unresolvable class definition for class [org.springdoc.core.conditions.MultipleOpenApiSupportCondition]
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:331)
+	at org.springframework.context.annotation.ConditionEvaluator.getCondition(ConditionEvaluator.java:124)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:96)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:226)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	... 19 common frames omitted
+Caused by: java.lang.UnsupportedClassVersionError: org/springdoc/core/conditions/MultipleOpenApiSupportCondition has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 57.0
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1017)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:151)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:719)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:642)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:600)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:416)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:324)
+	... 23 common frames omitted

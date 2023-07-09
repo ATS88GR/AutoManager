@@ -9,6 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Car {
 
+    private int id;
     private int year;
     private String brand;
     private String model;

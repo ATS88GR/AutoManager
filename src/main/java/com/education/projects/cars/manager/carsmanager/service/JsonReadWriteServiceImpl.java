@@ -81,6 +81,7 @@ public class JsonReadWriteServiceImpl implements ReadWriteService {
         JSONArray jsonArray = new JSONArray();
         for (Car car: list){
             JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id", car.getId());
             jsonObject.put("year", car.getYear());
             jsonObject.put("brand", car.getBrand());
             jsonObject.put("model", car.getModel());
@@ -109,6 +110,7 @@ public class JsonReadWriteServiceImpl implements ReadWriteService {
                 JSONObject jsonCarObject = (JSONObject) iterator.next();
                 System.out.println(jsonCarObject);
                 //System.out.println(iterator.next());
+                car.setId(Math.toIntExact((Long) jsonCarObject.get("id")));
                 car.setYear(Math.toIntExact((Long) jsonCarObject.get("year")));
                 car.setBrand((String) jsonCarObject.get("brand"));
                 car.setModel((String) jsonCarObject.get("model"));

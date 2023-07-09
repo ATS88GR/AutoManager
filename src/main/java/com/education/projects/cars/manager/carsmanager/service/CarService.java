@@ -67,8 +67,8 @@ public interface CarService {
      */
     default void printCarList(ArrayList<Car> list){
         list.forEach(car -> {
-            String strF = String.format("Year: %d, brand: %s, model: %s, cost: %d\n",
-                    car.getYear(), car.getBrand(), car.getModel(), car.getCost());
+            String strF = String.format("Id: %d, year: %d, brand: %s, model: %s, cost: %d\n",
+                    car.getId(), car.getYear(), car.getBrand(), car.getModel(), car.getCost());
             System.out.print(strF);
         });
     }
