@@ -3,11 +3,13 @@ package com.education.projects.cars.manager.carsmanager.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Car {
     @Schema (name = "id", description = "Car id", example = "1")
     private int id;
@@ -19,7 +21,4 @@ public class Car {
     private String model;
     @Schema (name = "cost", description = "Car cost", example = "5000")
     private int cost;
-
-    public Car() {
-    }
 }

@@ -123,7 +123,7 @@ public class DBCarServiceImpl implements CarService{
         return getListCar(true);
     }
 
-    public Car createAuto(Car car) {
+    public Car createAuto(Car car) throws Exception{
         long id = 0;
         dbPoolService.statementExeQuery("INSERT INTO Garage (Year, Brand, Model, Cost)" +
                 " VALUES(" + car.getYear()+ ", '" + car.getBrand() + "', '" + car.getModel() +
@@ -137,7 +137,7 @@ public class DBCarServiceImpl implements CarService{
         return getCarById(id);
     }
 
-    public Car updateAuto(Car car, Long id) {
+    public Car updateAuto(Car car, Long id) throws Exception{
         dbPoolService.statementExeQuery("UPDATE Garage SET Year = " + car.getYear() + ", Brand = '"+
                 car.getBrand() + "', Model = '" + car.getModel() + "', Cost = " + car.getCost() +
                 " WHERE Id = " + id +";");
@@ -149,16 +149,16 @@ public class DBCarServiceImpl implements CarService{
         return getListCar(false);
     }
 
-    public Car getCarById(Long id) {
+    public Car getCarById(Long id) throws SQLException {
         Car car = null;
         dbPoolService.statementExeQuery("SELECT * FROM Garage WHERE Id =" + id +";");
-        try {
+        //try {
             dbPoolService.getRs().next();
             car = new Car();
             setFieldCar(car);
-        } catch (SQLException throwables) {
+        /*} catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
+        }*/
         return car;
     }
 
