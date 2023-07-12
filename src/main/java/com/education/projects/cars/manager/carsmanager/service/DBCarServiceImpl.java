@@ -123,17 +123,13 @@ public class DBCarServiceImpl implements CarService{
         return getListCar(true);
     }
 
-    public Car createAuto(Car car) throws Exception{
+    public Car createAuto(Car car) throws SQLException{
         long id = 0;
         dbPoolService.statementExeQuery("INSERT INTO Garage (Year, Brand, Model, Cost)" +
                 " VALUES(" + car.getYear()+ ", '" + car.getBrand() + "', '" + car.getModel() +
                 "', " + car.getCost() +") RETURNING id;");
-        try {
-            dbPoolService.getRs().next();
-            id = dbPoolService.getRs().getInt("Id");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        dbPoolService.getRs().next();
+        id = dbPoolService.getRs().getInt("Id");
         return getCarById(id);
     }
 
@@ -150,15 +146,11 @@ public class DBCarServiceImpl implements CarService{
     }
 
     public Car getCarById(Long id) throws SQLException {
-        Car car = null;
+        Car car;
         dbPoolService.statementExeQuery("SELECT * FROM Garage WHERE Id =" + id +";");
-        //try {
-            dbPoolService.getRs().next();
-            car = new Car();
-            setFieldCar(car);
-        /*} catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+        dbPoolService.getRs().next();
+        car = new Car();
+        setFieldCar(car);
         return car;
     }
 
@@ -176,5 +168,12 @@ public class DBCarServiceImpl implements CarService{
      */
     public void deleteCarById(Long id) {
         dbPoolService.statementExe("DELETE FROM Garage WHERE Id = " + id + ";");
+    }
+
+    public Collection<Car> getSortedFilteredCars(String sortBy, String sortDirection, String filter)
+            throws SQLException {
+        dbPoolService.statementExeQuery("SELECT * FROM Garage " +
+                "WHERE " + filter + " ORDER BY " + sortBy + " " + sortDirection +";");
+        return getListCar(false);
     }
 }

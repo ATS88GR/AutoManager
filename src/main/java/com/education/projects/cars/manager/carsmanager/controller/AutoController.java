@@ -64,6 +64,24 @@ public class AutoController {
         return dbCarServiceImpl.getAllCars();
     }
 
+    @Operation(summary = "Gets sorted and filtered information about cars from database",
+            description = "Returns collection of car objects from database")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved")
+    @GetMapping("/sortedCars")
+    public Collection <Car> getSortFilterCars(
+            @RequestParam ("sortBy") String sortBy,
+            @RequestParam ("sortDirection") String sortDirection,
+            @RequestParam ("filter") String filter
+    ) {
+        log.info("Get sorted and filtered car info");
+        try {
+            return dbCarServiceImpl.getSortedFilteredCars(sortBy, sortDirection, filter);
+        } catch (SQLException e) {
+            log.error("Error: {}", e.getMessage());
+        }
+        return null;
+    }
+
     @Operation(summary = "Gets car by id",
             description = "Returns id car information from database")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved")
