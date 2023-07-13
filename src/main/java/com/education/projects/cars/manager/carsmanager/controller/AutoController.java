@@ -3,6 +3,7 @@ package com.education.projects.cars.manager.carsmanager.controller;
 import com.education.projects.cars.manager.carsmanager.model.Car;
 import com.education.projects.cars.manager.carsmanager.service.DBCarServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -69,9 +70,12 @@ public class AutoController {
     @ApiResponse(responseCode = "200", description = "Successfully retrieved")
     @GetMapping("/sortedCars")
     public Collection <Car> getSortFilterCars(
-            @RequestParam ("sortBy") String sortBy,
-            @RequestParam ("sortDirection") String sortDirection,
-            @RequestParam ("filter") String filter
+            @Schema(name = "sortBy", description = "sorting column", example = "year")
+            @RequestParam String sortBy,
+            @Schema(name = "sortDirection", description = "direction of sorting", example = "ASC/DESC")
+            @RequestParam String sortDirection,
+            @Schema(name = "filter", description = "filtering settings", example = "not_eq.year.2012")
+            @RequestParam (required = false) String filter
     ) {
         log.info("Get sorted and filtered car info");
         try {

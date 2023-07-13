@@ -172,8 +172,16 @@ public class DBCarServiceImpl implements CarService{
 
     public Collection<Car> getSortedFilteredCars(String sortBy, String sortDirection, String filter)
             throws SQLException {
-        dbPoolService.statementExeQuery("SELECT * FROM Garage " +
-                "WHERE " + filter + " ORDER BY " + sortBy + " " + sortDirection +";");
+        dbPoolService.statementExeQuery("SELECT * FROM Garage" + parseFilter(filter) +
+                " ORDER BY " + sortBy + " " + sortDirection +";");
         return getListCar(false);
+    }
+
+    private String parseFilter(String filter) {
+        if (filter == null || filter.equals("")) return "";
+        else {
+            String[] arrFilter = filter.split("\\.");
+            return " WHERE " + arrFilter[1] + " " + ((arrFilter[0].equals("eq"))? "= "  : "!= " + arrFilter[2]);
+        }
     }
 }
