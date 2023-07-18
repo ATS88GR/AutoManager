@@ -147,7 +147,7 @@ public class DialogMenuService {
      * @see CarService
      */
     public void dbMenu() {
-        dbPoolService.createDBTable();          //create table
+        //dbPoolService.createDBTable();          //create table
         //dbPoolService.writeDB();                //fill the table
         commonActions(dbCarServiceImpl, null,null);
         //the rwService for json is null because of it is launched inside the method,
