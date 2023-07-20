@@ -123,6 +123,12 @@ public class DBCarServiceImpl implements CarService{
         return getListCar(true);
     }
 
+    /**
+     * Creates a new Car object information in the database, returns a Car object from database by id
+     * @param car Car object to be added to the database
+     * @return Car object information from database by id
+     * @throws SQLException
+     */
     public Car createAuto(Car car) throws SQLException{
         long id = 0;
         dbPoolService.statementExeQuery("INSERT INTO Garage (Year, Brand, Model, Cost)" +
@@ -133,6 +139,13 @@ public class DBCarServiceImpl implements CarService{
         return getCarById(id);
     }
 
+    /**
+     * Updates the Car object information by id with update car information
+     * @param car Car object information to update
+     * @param id id of the car object to be updated
+     * @return Car object information from database by id
+     * @throws Exception
+     */
     public Car updateAuto(Car car, Long id) throws Exception{
         dbPoolService.statementExeQuery("UPDATE Garage SET Year = " + car.getYear() + ", Brand = '"+
                 car.getBrand() + "', Model = '" + car.getModel() + "', Cost = " + car.getCost() +
@@ -140,11 +153,21 @@ public class DBCarServiceImpl implements CarService{
         return getCarById(id);
     }
 
+    /**
+     * Gets all cars objects information from database
+     * @return The list of the Car objects
+     */
     public Collection<Car> getAllCars() {
         dbPoolService.statementExeQuery("SELECT * FROM Garage;");
         return getListCar(false);
     }
 
+    /**
+     * Gets the Car object information from the database by id
+     * @param id id of the car object in database
+     * @return The Car object from database
+     * @throws SQLException
+     */
     public Car getCarById(Long id) throws SQLException {
         Car car;
         dbPoolService.statementExeQuery("SELECT * FROM Garage WHERE Id =" + id +";");
@@ -154,6 +177,11 @@ public class DBCarServiceImpl implements CarService{
         return car;
     }
 
+    /**
+     * Sets fields of Car objects by result set information from database
+     * @param car The Car object to set fields
+     * @throws SQLException
+     */
     private void setFieldCar(Car car) throws SQLException {
         car.setId(dbPoolService.getRs().getInt("Id"));
         car.setYear(dbPoolService.getRs().getInt("Year"));
@@ -163,13 +191,21 @@ public class DBCarServiceImpl implements CarService{
     }
 
     /**
-     * removes the row with id from database
+     * Removes the row with id from database
      * @param id is a row in database
      */
     public void deleteCarById(Long id) {
         dbPoolService.statementExe("DELETE FROM Garage WHERE Id = " + id + ";");
     }
 
+    /**
+     * Sorts and filters Cars objects information from database, returns list of Car objects
+     * @param sortBy Sets the sort order
+     * @param sortDirection Sets the sort direction (ACK/DESC)
+     * @param filter The filter parameter, which need to parse
+     * @return The list of the Car objects
+     * @throws SQLException
+     */
     public Collection<Car> getSortedFilteredCars(String sortBy, String sortDirection, String filter)
             throws SQLException {
         dbPoolService.statementExeQuery("SELECT * FROM Garage" + parseFilter(filter) +
@@ -177,6 +213,11 @@ public class DBCarServiceImpl implements CarService{
         return getListCar(false);
     }
 
+    /**
+     * Parses the filter information
+     * @param filter The filter information
+     * @return SQL script to filtering the database
+     */
     private String parseFilter(String filter) {
         if (filter == null || filter.equals("")) return "";
         else {
