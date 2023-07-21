@@ -106,7 +106,7 @@ public class CarServiceImpl implements CarService {
     }
 
     /**
-     * to replace elements in Car objects list between index1 and index2
+     * Replaces elements in Car objects list between index1 and index2
      * @param list
      * @param index1
      * @param index2

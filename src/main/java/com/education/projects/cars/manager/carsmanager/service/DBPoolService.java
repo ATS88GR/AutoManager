@@ -1,6 +1,5 @@
 package com.education.projects.cars.manager.carsmanager.service;
 
-import com.education.projects.cars.manager.carsmanager.model.Car;
 import lombok.Getter;
 import org.postgresql.ds.PGPoolingDataSource;
 import org.springframework.stereotype.Service;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.sql.*;
-import java.util.Collection;
 
 @Getter
 

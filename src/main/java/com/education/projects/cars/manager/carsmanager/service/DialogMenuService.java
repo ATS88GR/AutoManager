@@ -33,7 +33,7 @@ public class DialogMenuService {
      *Shows actions in start menu and transmit saving choose to actions() method
      */
     public void chooseAction() {
-        int chooseAct=4;   //int for saving choose
+        int chooseAct=0;   //int for saving choose
         try {
             do {            //to loop until choose exit number
                 System.out.println("""
@@ -44,8 +44,11 @@ public class DialogMenuService {
                         4. Exit.
                         """);
                 if (scannerService.getSc().hasNextLine()) {
-                    chooseAct = Integer.parseInt(scannerService.getSc().nextLine());
-                    actions(chooseAct);
+                    String resultSc = scannerService.getSc().nextLine();
+                    if(!resultSc.trim().equals("")) {
+                        chooseAct = Integer.parseInt(resultSc);
+                        actions(chooseAct);
+                    }
                 }
             }while (chooseAct != 4);
         } catch (Exception e) {
@@ -147,7 +150,7 @@ public class DialogMenuService {
      * @see CarService
      */
     public void dbMenu() {
-        dbPoolService.createDBTable();          //create table
+        //dbPoolService.createDBTable();          //create table
         //dbPoolService.writeDB();                //fill the table
         commonActions(dbCarServiceImpl, null,null);
         //the rwService for json is null because of it is launched inside the method,
