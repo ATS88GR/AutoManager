@@ -1,7 +1,6 @@
 package com.education.projects.cars.manager.carsmanager.service;
 
-import com.education.projects.cars.manager.carsmanager.model.Car;
-import com.education.projects.cars.manager.carsmanager.utils.TestCar;
+import com.education.projects.cars.manager.carsmanager.entity.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -26,8 +25,6 @@ public class DialogMenuService {
     @Autowired
     @Qualifier("DBCarServiceImpl")
     private CarService dbCarServiceImpl;
-    @Autowired
-    private DBPoolService dbPoolService;
 
     /**
      *Shows actions in start menu and transmit saving choose to actions() method
@@ -164,7 +161,7 @@ public class DialogMenuService {
      * @see CarServiceImpl
      */
     public void jsonMenu() {
-        ArrayList<Car> garage = TestCar.getGarage();
+        ArrayList<Car> garage;
         System.out.println("Write json file name:");
         garage = jsonRWService.fileReader(scannerService.getSc().nextLine());
         commonActions(carServiceImpl, jsonRWService, garage);
@@ -177,7 +174,7 @@ public class DialogMenuService {
      * @see CarServiceImpl
      */
     public void txtMenu() {
-        ArrayList<Car> garage = TestCar.getGarage();
+        ArrayList<Car> garage;
         System.out.println("Write txt file name:");
         garage = txtRWService.fileReader(scannerService.getSc().nextLine());
         commonActions(carServiceImpl, txtRWService, garage);

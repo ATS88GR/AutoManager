@@ -5,7 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import com.education.projects.cars.manager.carsmanager.model.Car;
+import com.education.projects.cars.manager.carsmanager.entity.Car;
 import org.springframework.stereotype.Service;
 
 import java.io.*;

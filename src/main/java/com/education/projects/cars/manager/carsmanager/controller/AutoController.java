@@ -1,6 +1,6 @@
 package com.education.projects.cars.manager.carsmanager.controller;
 
-import com.education.projects.cars.manager.carsmanager.model.Car;
+import com.education.projects.cars.manager.carsmanager.entity.Car;
 import com.education.projects.cars.manager.carsmanager.service.DBCarServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -46,9 +46,9 @@ public class AutoController {
             @ApiResponse(responseCode = "404", description = "Not found - The car was not found")
     })
     @PutMapping("/cars/{id}")
-    public Car updateCar(@RequestBody Car car, @PathVariable Long id){
+    public Car updateCar(@RequestBody Car car, @PathVariable Integer id){
         try {
-            log.info("Update car with id ={}, update car info {}", id, car);
+            log.info("Update car with id = {}, update car info {}", id, car);
             return dbCarServiceImpl.updateAuto(car, id);
         } catch (Exception ex){
             log.error("Error: {}", ex.getMessage());
@@ -90,8 +90,8 @@ public class AutoController {
             description = "Returns id car information from database")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved")
     @GetMapping("/cars/{id}")
-    public Car getCarById(@PathVariable Long id) {
-        log.info("Gets car with id ={}", id);
+    public Car getCarById(@PathVariable Integer id) {
+        log.info("Gets car with id = {}", id);
         try {
             return dbCarServiceImpl.getCarById(id);
         } catch (SQLException e) {
@@ -104,7 +104,7 @@ public class AutoController {
             description = "Removes the row with id from database")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved")
     @DeleteMapping("/cars/{id}")
-    public void deleteCarById(@PathVariable Long id) {
+    public void deleteCarById(@PathVariable Integer id) {
         log.info("Deletes car with id ={}", id);
         dbCarServiceImpl.deleteCarById(id);
     }

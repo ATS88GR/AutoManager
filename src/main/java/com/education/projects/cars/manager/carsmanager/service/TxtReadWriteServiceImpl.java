@@ -1,7 +1,6 @@
 package com.education.projects.cars.manager.carsmanager.service;
 
-import com.education.projects.cars.manager.carsmanager.model.Car;
-import org.springframework.context.annotation.Scope;
+import com.education.projects.cars.manager.carsmanager.entity.Car;
 import org.springframework.stereotype.Service;
 
 import java.io.*;

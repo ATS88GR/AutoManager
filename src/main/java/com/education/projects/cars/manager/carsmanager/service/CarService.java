@@ -1,6 +1,6 @@
 package com.education.projects.cars.manager.carsmanager.service;
 
-import com.education.projects.cars.manager.carsmanager.model.Car;
+import com.education.projects.cars.manager.carsmanager.entity.Car;
 
 import java.util.ArrayList;
 
