@@ -1,10 +1,14 @@
 package com.education.projects.cars.manager.carsmanager.service;
 
 import com.education.projects.cars.manager.carsmanager.entity.Car;
+import com.education.projects.cars.manager.carsmanager.entity.CarPage;
+import com.education.projects.cars.manager.carsmanager.entity.CarSearchCriteria;
 import com.education.projects.cars.manager.carsmanager.repository.CarRepository;
-import com.education.projects.cars.manager.carsmanager.utils.CarSpecification;
-import com.education.projects.cars.manager.carsmanager.utils.SearchCriteria;
+import com.education.projects.cars.manager.carsmanager.repository.CarSpecification;
+import com.education.projects.cars.manager.carsmanager.repository.CarCriteriaRepository;
+import com.education.projects.cars.manager.carsmanager.repository.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -19,6 +23,8 @@ public class DBCarServiceImpl implements CarService {
 
     @Autowired
     private CarRepository carRepository;
+    //private final CarRepository carRepository;
+    private CarCriteriaRepository carCriteriaRepository;
 
     /**
      * Gets a car objects list, according to the current result set of the database,
@@ -183,16 +189,18 @@ public class DBCarServiceImpl implements CarService {
      */
     public Collection<Car> getSortedFilteredCars(String sortBy, String sortDirection, String filter)
             throws SQLException {
-        String key;
-        String operation;
-        String value;
 
         String[] arrFilter = filter.split("\\.");
-        key = arrFilter[1];
-        value = arrFilter[2];
-        operation = (arrFilter[0].equals("eq")) ? "= " : "!= ";
+        String key = arrFilter[1];
+        String value = arrFilter[2];
+        String operation = (arrFilter[0].equals("eq")) ? "= " : "!= ";
 
         CarSpecification spec = new CarSpecification(new SearchCriteria(key, operation, value));
         return carRepository.findAll(spec);
+    }
+
+    public Page<Car> getSortedFilteredCarsCommon(CarPage carPage,
+                                  CarSearchCriteria carSearchCriteria){
+        return carCriteriaRepository.findAllWithFilters(carPage, carSearchCriteria);
     }
 }

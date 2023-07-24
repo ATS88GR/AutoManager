@@ -1,4 +1,4 @@
-package com.education.projects.cars.manager.carsmanager.utils;
+package com.education.projects.cars.manager.carsmanager.repository;
 import com.education.projects.cars.manager.carsmanager.entity.Car;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;

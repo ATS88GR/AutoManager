@@ -8,12 +8,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "garage")
+@Table(name = "GARAGE")
 public class Car {
+
+    public Car(Integer year, String brand, String model, Integer cost) {
+        this.year = year;
+        this.brand = brand;
+        this.model = model;
+        this.cost = cost;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(name = "id", description = "Car id", example = "1")

@@ -1,6 +1,8 @@
 package com.education.projects.cars.manager.carsmanager.controller;
 
 import com.education.projects.cars.manager.carsmanager.entity.Car;
+import com.education.projects.cars.manager.carsmanager.entity.CarPage;
+import com.education.projects.cars.manager.carsmanager.entity.CarSearchCriteria;
 import com.education.projects.cars.manager.carsmanager.service.DBCarServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -9,6 +11,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -81,6 +86,22 @@ public class AutoController {
         try {
             return dbCarServiceImpl.getSortedFilteredCars(sortBy, sortDirection, filter);
         } catch (SQLException e) {
+            log.error("Error: {}", e.getMessage());
+        }
+        return null;
+    }
+
+    @Operation(summary = "Gets sorted and filtered information about cars from database",
+            description = "Returns collection of car objects from database")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved")
+    @GetMapping("/sortedFilteredCars")
+    public ResponseEntity<Page<Car>> getSortFilterCarsCommon(CarPage carPage,
+                                                       CarSearchCriteria carSearchCriteria) {
+        log.info("Get common sorted and filtered car info");
+        try {
+            return new ResponseEntity<>(dbCarServiceImpl.getSortedFilteredCarsCommon(carPage, carSearchCriteria),
+                    HttpStatus.OK);
+        } catch (Exception e) {
             log.error("Error: {}", e.getMessage());
         }
         return null;
