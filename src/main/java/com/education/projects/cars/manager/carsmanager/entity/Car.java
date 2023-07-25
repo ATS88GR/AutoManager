@@ -1,5 +1,6 @@
 package com.education.projects.cars.manager.carsmanager.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "GARAGE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Car {
 
     public Car(Integer year, String brand, String model, Integer cost) {
@@ -35,7 +37,7 @@ public class Car {
     @Column(name = "brand", nullable = false)
     private String brand;
 
-    @Schema (name = "model", description = "Car model", example = "VW")
+    @Schema (name = "model", description = "Car model", example = "Polo")
     @Column(name = "model", nullable = false)
     private String model;
 

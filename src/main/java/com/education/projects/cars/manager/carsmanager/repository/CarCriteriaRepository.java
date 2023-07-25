@@ -41,7 +41,7 @@ public class CarCriteriaRepository {
 
         Pageable pageable = getPageable(carPage);
 
-        long carsCount = getCarsCount(predicate);
+        long carsCount = 10;
 
         return new PageImpl<>(typedQuery.getResultList(), pageable, carsCount);
     }
@@ -49,7 +49,7 @@ public class CarCriteriaRepository {
     private long getCarsCount(Predicate predicate) {
         CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
         Root<Car> countRoot = countQuery.from(Car.class);
-        countQuery.select(criteriaBuilder.count(countRoot)).where(predicate);
+        countQuery.select(criteriaBuilder.count(countRoot));
         return entityManager.createQuery(countQuery).getSingleResult();
     }
 
@@ -75,12 +75,12 @@ public class CarCriteriaRepository {
         if(Objects.nonNull(carSearchCriteria.getModel()))
             predicates.add(criteriaBuilder.like(carRoot.get("model"),
                     "%" + carSearchCriteria.getModel() + "%"));
-        if(Objects.nonNull(carSearchCriteria.getYear()))
-            predicates.add(criteriaBuilder.like(carRoot.get("year"),
-                    String.valueOf(carSearchCriteria.getYear())));
-        if(Objects.nonNull(carSearchCriteria.getCost()))
-            predicates.add(criteriaBuilder.like(carRoot.get("cost"),
-                    String.valueOf(carSearchCriteria.getCost())));
+//        if(Objects.nonNull(carSearchCriteria.getYear()))
+//            predicates.add(criteriaBuilder.like(carRoot.get("year"),
+//                    Long.valueOf(carSearchCriteria.getYear())));
+//        if(Objects.nonNull(carSearchCriteria.getCost()))
+//            predicates.add(criteriaBuilder.like(carRoot.get("cost"),
+//                    String.valueOf(carSearchCriteria.getCost())));
         return criteriaBuilder.and(predicates.toArray((new Predicate[0])));
     }
 }
