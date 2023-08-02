@@ -1,8 +1,10 @@
 package com.education.projects.cars.manager.carsmanager.repository;
 
+import com.education.projects.cars.manager.carsmanager.dto.response.CarDtoResp;
 import com.education.projects.cars.manager.carsmanager.entity.Car;
 import com.education.projects.cars.manager.carsmanager.entity.CarPage;
 import com.education.projects.cars.manager.carsmanager.entity.CarSearchCriteria;
+import com.education.projects.cars.manager.carsmanager.mapper.CarMapperResp;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -26,8 +28,8 @@ public class CarCriteriaRepository {
         this.criteriaBuilder = entityManager.getCriteriaBuilder();
     }
 
-    public Page<Car> findAllWithFilters(CarPage carPage,
-                                        CarSearchCriteria carSearchCriteria){
+    public Page<CarDtoResp> findAllWithFilters(CarPage carPage,
+                                               CarSearchCriteria carSearchCriteria){
         CriteriaQuery<Car> criteriaQuery = criteriaBuilder.createQuery(Car.class);
         Root<Car> carRoot = criteriaQuery.from(Car.class);
         Predicate predicate = getPredicate(carSearchCriteria, carRoot);
@@ -43,7 +45,10 @@ public class CarCriteriaRepository {
 
         long carsCount = 10;
 
-        return new PageImpl<>(typedQuery.getResultList(), pageable, carsCount);
+        return (new PageImpl<>(
+                typedQuery.getResultList().stream().map(CarMapperResp.INSTANCE::carToCarDto).toList(),
+                pageable,
+                carsCount));
     }
 
     private long getCarsCount(Predicate predicate) {
@@ -75,12 +80,12 @@ public class CarCriteriaRepository {
         if(Objects.nonNull(carSearchCriteria.getModel()))
             predicates.add(criteriaBuilder.like(carRoot.get("model"),
                     "%" + carSearchCriteria.getModel() + "%"));
-//        if(Objects.nonNull(carSearchCriteria.getYear()))
-//            predicates.add(criteriaBuilder.like(carRoot.get("year"),
-//                    Long.valueOf(carSearchCriteria.getYear())));
-//        if(Objects.nonNull(carSearchCriteria.getCost()))
-//            predicates.add(criteriaBuilder.like(carRoot.get("cost"),
-//                    String.valueOf(carSearchCriteria.getCost())));
+        if(carSearchCriteria.getYear()>0)
+            predicates.add(criteriaBuilder.equal(carRoot.get("year"),
+                    carSearchCriteria.getYear()));
+        if(carSearchCriteria.getCost()>0)
+            predicates.add(criteriaBuilder.equal(carRoot.get("cost"),
+                    carSearchCriteria.getCost()));
         return criteriaBuilder.and(predicates.toArray((new Predicate[0])));
     }
 }
