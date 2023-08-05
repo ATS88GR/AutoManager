@@ -5,41 +5,47 @@ import com.education.projects.cars.manager.carsmanager.dto.response.CarDtoResp;
 import com.education.projects.cars.manager.carsmanager.entity.Car;
 import com.education.projects.cars.manager.carsmanager.entity.CarPage;
 import com.education.projects.cars.manager.carsmanager.entity.CarSearchCriteria;
-import com.education.projects.cars.manager.carsmanager.mapper.CarMapperReq;
-import com.education.projects.cars.manager.carsmanager.mapper.CarMapperResp;
+import com.education.projects.cars.manager.carsmanager.mapper.CarMapper;
 import com.education.projects.cars.manager.carsmanager.repository.CarRepository;
 import com.education.projects.cars.manager.carsmanager.repository.CarSpecification;
 import com.education.projects.cars.manager.carsmanager.repository.CarCriteriaRepository;
 import com.education.projects.cars.manager.carsmanager.repository.SearchCriteria;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * The class for service Car information in database
  */
 @Service
+@Slf4j
 public class DBCarServiceImpl implements CarService {
 
     @Autowired
     private CarRepository carRepository;
     @Autowired
     private CarCriteriaRepository carCriteriaRepository;
+    @Autowired
+    private CarMapper carMapper;
 
     /**
      * Creates a new Car object information in the database, returns a Car object from database by id
      *
      * @param carDtoReq Car object to be added to the database
      * @return Car object information from database by id
-     * @throws SQLException
+     * @throws Exception
      */
-    public CarDtoResp createAuto(CarDtoReq carDtoReq) throws SQLException {
-        return CarMapperResp.INSTANCE.carToCarDto(
-                carRepository.save(CarMapperReq.INSTANCE.carDtoToCar(carDtoReq)));
+    public CarDtoResp createAuto(CarDtoReq carDtoReq) throws Exception {
+        try {
+            return carMapper.carToCarDto(
+                    carRepository.save(carMapper.carDtoToCar(carDtoReq)));
+        }catch (Exception e){
+            log.error("Error: {}", e.getMessage());
+            throw new Exception(e.getMessage());
+        }
     }
 
     /**
@@ -48,17 +54,23 @@ public class DBCarServiceImpl implements CarService {
      * @param carDtoReq Car object information to update
      * @param id  id of the car object to be updated
      * @return Car object information from database by id
-     * @throws SQLException
+     * @throws Exception
      */
-    public CarDtoResp updateAuto(CarDtoReq carDtoReq, Integer id) throws SQLException {
-        if(carRepository.existsById(id)) {
-            Car carToChange = CarMapperReq.INSTANCE.carDtoToCar(carDtoReq);
-            carToChange.setId(id);
-            return CarMapperResp.INSTANCE.carToCarDto(carRepository.save(carToChange));
-        } else {
-            throw new SQLException("The car with id = " + id +" wasn't found");
+    public CarDtoResp updateAuto(CarDtoReq carDtoReq, Integer id) throws Exception {
+        try {
+            if (carRepository.existsById(id)) {
+                Car carToChange = carMapper.carDtoToCar(carDtoReq);
+                carToChange.setId(id);
+                return carMapper.carToCarDto(carRepository.save(carToChange));
+            } else {
+                Exception e = new Exception("The car wasn't found");
+                log.error("Error: {}", e.getMessage());
+                throw e;
+            }
+        }catch (Exception ex){
+            log.error("Error: {}", ex.getMessage());
+            throw new Exception(ex.getMessage());
         }
-
     }
 
     /**
@@ -66,9 +78,13 @@ public class DBCarServiceImpl implements CarService {
      *
      * @return The list of the Car objects
      */
-    public List<CarDtoResp> getAllCars() {
-        return carRepository.findAll().stream()
-                .map(CarMapperResp.INSTANCE::carToCarDto).toList();
+    public Collection<CarDtoResp> getAllCars() throws Exception{
+        try {
+            return carMapper.carListToCarDtoList(carRepository.findAll());
+        }catch (Exception e){
+            log.error("Error: {}", e.getMessage());
+            throw new Exception(e.getMessage());
+        }
     }
 
     /**
@@ -76,13 +92,21 @@ public class DBCarServiceImpl implements CarService {
      *
      * @param id id of the car object in database
      * @return The Car object from database
-     * @throws SQLException
+     * @throws Exception
      */
-    public CarDtoResp getCarById(Integer id) throws SQLException {
-        if(carRepository.existsById(id))
-            return CarMapperResp.INSTANCE.carToCarDto(carRepository.getReferenceById(id));
-        else
-            throw new SQLException("The car with id = " + id +" wasn't found");
+    public CarDtoResp getCarById(Integer id) throws Exception {
+        try {
+            if (carRepository.existsById(id))
+                return carMapper.carToCarDto(carRepository.getReferenceById(id));
+            else {
+                Exception e = new Exception("The car wasn't found");
+                log.error("Error: {}", e.getMessage());
+                throw e;
+            }
+        }catch (Exception e){
+            log.error("Error: {}", e.getMessage());
+            throw new Exception(e.getMessage());
+        }
     }
 
     /**
@@ -90,10 +114,19 @@ public class DBCarServiceImpl implements CarService {
      *
      * @param id is a row in database
      */
-    public void deleteCarById(Integer id) throws SQLException {
-        if(carRepository.existsById(id))
-            carRepository.deleteById(id);
-        else throw new SQLException("The car with id = " + id +" wasn't found");
+    public void deleteCarById(Integer id) throws Exception {
+        try {
+            if (carRepository.existsById(id))
+                carRepository.deleteById(id);
+            else {
+                Exception e = new Exception("The car wasn't found");
+                log.error("Error: {}", e.getMessage());
+                throw e;
+            }
+        }catch (Exception e){
+            log.error("Error: {}", e.getMessage());
+            throw new Exception(e.getMessage());
+        }
     }
 
     /**
@@ -103,10 +136,10 @@ public class DBCarServiceImpl implements CarService {
      * @param sortDirection Sets the sort direction (ACK/DESC)
      * @param filter        The filter parameter, which need to parse
      * @return The list of the Car objects
-     * @throws SQLException
+     * @throws Exception
      */
     public Collection<Car> getSortedFilteredCars(String sortBy, String sortDirection, String filter)
-            throws SQLException {
+            throws Exception {
 
         String[] arrFilter = filter.split("\\.");
         String key = arrFilter[1];
@@ -118,7 +151,13 @@ public class DBCarServiceImpl implements CarService {
     }
 
     public Page<CarDtoResp> getSortedFilteredCarsCommon(CarPage carPage,
-                                  CarSearchCriteria carSearchCriteria){
-        return carCriteriaRepository.findAllWithFilters(carPage, carSearchCriteria);
+                                  CarSearchCriteria carSearchCriteria)
+    throws Exception{
+        try {
+            return carCriteriaRepository.findAllWithFilters(carPage, carSearchCriteria);
+        }catch (Exception e){
+            log.error("Error: {}", e.getMessage());
+            throw new Exception(e.getMessage());
+        }
     }
 }

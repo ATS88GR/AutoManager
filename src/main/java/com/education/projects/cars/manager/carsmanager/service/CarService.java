@@ -6,23 +6,22 @@ import com.education.projects.cars.manager.carsmanager.entity.Car;
 
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * The interface for service Car objects information
  */
 public interface CarService {
 
-    CarDtoResp createAuto(CarDtoReq carDtoReq) throws SQLException;
+    CarDtoResp createAuto(CarDtoReq carDtoReq) throws Exception;
 
-    CarDtoResp updateAuto(CarDtoReq carDtoReq, Integer id) throws SQLException;
+    CarDtoResp updateAuto(CarDtoReq carDtoReq, Integer id) throws Exception;
 
-    List<CarDtoResp> getAllCars();
+    Collection<CarDtoResp> getAllCars() throws Exception;
 
-    CarDtoResp getCarById(Integer id) throws SQLException;
+    CarDtoResp getCarById(Integer id) throws Exception;
 
-    void deleteCarById(Integer id) throws SQLException;
+    void deleteCarById(Integer id) throws Exception;
 
     Collection<Car> getSortedFilteredCars(String sortBy, String sortDirection, String filter)
-            throws SQLException;
+            throws Exception;
 }
