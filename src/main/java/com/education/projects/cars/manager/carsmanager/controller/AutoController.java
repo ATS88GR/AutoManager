@@ -1,5 +1,7 @@
 package com.education.projects.cars.manager.carsmanager.controller;
 
+import com.education.projects.cars.manager.carsmanager.dto.request.CarDtoReq;
+import com.education.projects.cars.manager.carsmanager.dto.response.CarDtoResp;
 import com.education.projects.cars.manager.carsmanager.entity.Car;
 import com.education.projects.cars.manager.carsmanager.entity.CarPage;
 import com.education.projects.cars.manager.carsmanager.entity.CarSearchCriteria;
@@ -9,18 +11,21 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpServerErrorException;
 
-import java.sql.SQLException;
 import java.util.Collection;
 
 @RestController
+@Validated
 @Slf4j
 @Tag(name = "Cars API")
 public class AutoController {
@@ -31,21 +36,15 @@ public class AutoController {
     @Operation(summary = "Creates new row in database with car information",
             description = "Returns created car information from database")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
+            @ApiResponse(responseCode = "201", description = "Successfully created"),
             @ApiResponse(responseCode = "400", description = "Bad request"),
             @ApiResponse(responseCode = "500", description = "Internal Server error")
     })
     @PostMapping("/cars")  //url
-    public ResponseEntity<Car> createCar(@RequestBody Car car){
-        log.info("Create car ={}", car);
-        try {
-            return new ResponseEntity<> (dbCarServiceImpl.createAuto(car), HttpStatus.OK);
-        } catch (Exception e) {
-            log.error("Error: {}", e.getMessage());
-            /*return new ResponseEntity<> (new Car(0,"Internal","Server Error", 0),
-                    HttpStatus.INTERNAL_SERVER_ERROR);*/
-        }
-        return null;
+    public ResponseEntity<CarDtoResp> createCar (@Valid @RequestBody CarDtoReq carDtoReq)
+            throws Exception{
+        log.info("Create car = {}", carDtoReq);
+        return new ResponseEntity<> (dbCarServiceImpl.createAuto(carDtoReq), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Updates car information by id",
@@ -57,14 +56,11 @@ public class AutoController {
             @ApiResponse(responseCode = "500", description = "Internal Server error")
     })
     @PutMapping("/cars/{id}")
-    public ResponseEntity <Car> updateCar(@RequestBody Car car, @PathVariable Integer id){
-        try {
-            log.info("Update car with id = {}, update car info {}", id, car);
-            return new ResponseEntity<>(dbCarServiceImpl.updateAuto(car, id), HttpStatus.OK);
-        } catch (Exception ex){
-            log.error("Error: {}", ex.getMessage());
-        }
-        return null;
+    public ResponseEntity <CarDtoResp> updateCar (
+            @Valid @RequestBody CarDtoReq carDtoReq, @PathVariable ("id") @NotNull @Min(1) Integer id)
+    throws Exception{
+        log.info("Update car with id = {}, update car info {}", id, carDtoReq);
+        return new ResponseEntity<>(dbCarServiceImpl.updateAuto(carDtoReq, id), HttpStatus.OK);
     }
 
     @Operation(summary = "Gets information about all cars from database",
@@ -75,7 +71,7 @@ public class AutoController {
             @ApiResponse(responseCode = "500", description = "Internal Server error")
     })
     @GetMapping("/cars")
-    public ResponseEntity <Collection <Car>> getCars() {
+    public ResponseEntity <Collection<CarDtoResp>> getCars() throws Exception {
         log.info("Get all car info");
         return new ResponseEntity <> (dbCarServiceImpl.getAllCars(), HttpStatus.OK);
     }
@@ -95,14 +91,10 @@ public class AutoController {
             @RequestParam String sortDirection,
             @Schema(name = "filter", description = "filtering settings", example = "not_eq.year.2012")
             @RequestParam (required = false) String filter
-    ) {
+    )
+    throws Exception{
         log.info("Get sorted and filtered car info");
-        try {
-            return dbCarServiceImpl.getSortedFilteredCars(sortBy, sortDirection, filter);
-        } catch (SQLException e) {
-            log.error("Error: {}", e.getMessage());
-        }
-        return null;
+        return dbCarServiceImpl.getSortedFilteredCars(sortBy, sortDirection, filter);
     }
 
     @Operation(summary = "Gets sorted and filtered information about cars from database",
@@ -113,16 +105,12 @@ public class AutoController {
             @ApiResponse(responseCode = "500", description = "Internal Server error")
     })
     @GetMapping("/sortedFilteredCars")
-    public ResponseEntity<Page<Car>> getSortFilterCarsCommon(CarPage carPage,
-                                                       CarSearchCriteria carSearchCriteria) {
+    public ResponseEntity<Page<CarDtoResp>> getSortFilterCarsCommon(CarPage carPage,
+                                                       CarSearchCriteria carSearchCriteria)
+    throws Exception{
         log.info("Get common sorted and filtered car info");
-        try {
-            return new ResponseEntity<>(dbCarServiceImpl.getSortedFilteredCarsCommon(carPage, carSearchCriteria),
-                    HttpStatus.OK);
-        } catch (Exception e) {
-            log.error("Error: {}", e.getMessage());
-        }
-        return null;
+        return new ResponseEntity<>(dbCarServiceImpl.getSortedFilteredCarsCommon(carPage, carSearchCriteria),
+                HttpStatus.OK);
     }
 
     @Operation(summary = "Gets car by id",
@@ -134,14 +122,10 @@ public class AutoController {
             @ApiResponse(responseCode = "500", description = "Internal Server error")
     })
     @GetMapping("/cars/{id}")
-    public ResponseEntity <Car> getCarById(@PathVariable Integer id) {
+    public ResponseEntity<CarDtoResp> getCarById(@PathVariable ("id") @NotNull @Min(1) Integer id)
+    throws Exception{
         log.info("Gets car with id = {}", id);
-        try {
-            return new ResponseEntity <> (dbCarServiceImpl.getCarById(id), HttpStatus.OK);
-        } catch (SQLException e) {
-            log.error("Error: {}", e.getMessage());
-        }
-        return null;
+        return new ResponseEntity <> (dbCarServiceImpl.getCarById(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Deletes car by id",
@@ -153,19 +137,10 @@ public class AutoController {
             @ApiResponse(responseCode = "500", description = "Internal Server error")
     })
     @DeleteMapping("/cars/{id}")
-    public ResponseEntity<String> deleteCarById(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteCarById(@PathVariable ("id") @NotNull @Min(1) Integer id)
+            throws Exception {
         log.info("Deletes car with id = {}", id);
-        try {
-            dbCarServiceImpl.deleteCarById(id);
-            return new ResponseEntity<>("The car deleted", HttpStatus.OK);
-        }catch (SQLException e){
-            log.error("Error: {}", e.getMessage());
-           return new ResponseEntity<>("The car wasn't found", HttpStatus.NOT_FOUND);
-        }catch (HttpServerErrorException.InternalServerError e){
-            log.error("Error: {}", e.getMessage());
-            return new ResponseEntity<>("The server is not available",
-                    HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        dbCarServiceImpl.deleteCarById(id);
+        return new ResponseEntity<>("The car deleted", HttpStatus.OK);
     }
-
 }

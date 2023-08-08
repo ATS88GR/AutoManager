@@ -1,9 +1,10 @@
 package com.education.projects.cars.manager.carsmanager.service;
 
+import com.education.projects.cars.manager.carsmanager.dto.request.CarDtoReq;
+import com.education.projects.cars.manager.carsmanager.dto.response.CarDtoResp;
 import com.education.projects.cars.manager.carsmanager.entity.Car;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -11,16 +12,16 @@ import java.util.Collection;
  */
 public interface CarService {
 
-    Car createAuto(Car car) throws SQLException;
+    CarDtoResp createAuto(CarDtoReq carDtoReq) throws Exception;
 
-    Car updateAuto(Car car, Integer id) throws SQLException;
+    CarDtoResp updateAuto(CarDtoReq carDtoReq, Integer id) throws Exception;
 
-    Collection<Car> getAllCars();
+    Collection<CarDtoResp> getAllCars() throws Exception;
 
-    Car getCarById(Integer id) throws SQLException;
+    CarDtoResp getCarById(Integer id) throws Exception;
 
-    void deleteCarById(Integer id) throws SQLException;
+    void deleteCarById(Integer id) throws Exception;
 
     Collection<Car> getSortedFilteredCars(String sortBy, String sortDirection, String filter)
-            throws SQLException;
+            throws Exception;
 }

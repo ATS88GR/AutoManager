@@ -1,14 +1,17 @@
 package com.education.projects.cars.manager.carsmanager.repository;
 
+import com.education.projects.cars.manager.carsmanager.dto.response.CarDtoResp;
 import com.education.projects.cars.manager.carsmanager.entity.Car;
 import com.education.projects.cars.manager.carsmanager.entity.CarPage;
 import com.education.projects.cars.manager.carsmanager.entity.CarSearchCriteria;
+import com.education.projects.cars.manager.carsmanager.mapper.CarMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;
 
@@ -21,13 +24,16 @@ public class CarCriteriaRepository {
     private final EntityManager entityManager;
     private final CriteriaBuilder criteriaBuilder;
 
+    @Autowired
+    CarMapper carMapper;
+
     public CarCriteriaRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
         this.criteriaBuilder = entityManager.getCriteriaBuilder();
     }
 
-    public Page<Car> findAllWithFilters(CarPage carPage,
-                                        CarSearchCriteria carSearchCriteria){
+    public Page<CarDtoResp> findAllWithFilters(CarPage carPage,
+                                               CarSearchCriteria carSearchCriteria){
         CriteriaQuery<Car> criteriaQuery = criteriaBuilder.createQuery(Car.class);
         Root<Car> carRoot = criteriaQuery.from(Car.class);
         Predicate predicate = getPredicate(carSearchCriteria, carRoot);
@@ -43,7 +49,10 @@ public class CarCriteriaRepository {
 
         long carsCount = 10;
 
-        return new PageImpl<>(typedQuery.getResultList(), pageable, carsCount);
+        return (new PageImpl<>(
+                carMapper.carListToCarDtoList(typedQuery.getResultList()),
+                pageable,
+                carsCount));
     }
 
     private long getCarsCount(Predicate predicate) {
@@ -75,12 +84,12 @@ public class CarCriteriaRepository {
         if(Objects.nonNull(carSearchCriteria.getModel()))
             predicates.add(criteriaBuilder.like(carRoot.get("model"),
                     "%" + carSearchCriteria.getModel() + "%"));
-//        if(Objects.nonNull(carSearchCriteria.getYear()))
-//            predicates.add(criteriaBuilder.like(carRoot.get("year"),
-//                    Long.valueOf(carSearchCriteria.getYear())));
-//        if(Objects.nonNull(carSearchCriteria.getCost()))
-//            predicates.add(criteriaBuilder.like(carRoot.get("cost"),
-//                    String.valueOf(carSearchCriteria.getCost())));
+        if(Objects.nonNull(carSearchCriteria.getYear()))
+            predicates.add(criteriaBuilder.equal(carRoot.get("year"),
+                    carSearchCriteria.getYear()));
+        if(Objects.nonNull(carSearchCriteria.getCost()))
+            predicates.add(criteriaBuilder.equal(carRoot.get("cost"),
+                    carSearchCriteria.getCost()));
         return criteriaBuilder.and(predicates.toArray((new Predicate[0])));
     }
 }
